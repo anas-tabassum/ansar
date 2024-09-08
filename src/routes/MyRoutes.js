@@ -8,6 +8,7 @@ import Guide from "../pages/Guide";
 import Hajj from "../pages/Hajj";
 import Umra from "../pages/Umra";
 import Ticket from "../pages/Ticket";
+import Booking from "../pages/Booking";
 
 import Navbar from "../components/Navbar";
 
@@ -26,6 +27,7 @@ const MyRoutes = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/ticket" element={<Ticket />} />
+          <Route path="/book" element={<Booking />} />
         </Routes>
       </Router>
     </div>

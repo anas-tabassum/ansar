@@ -1,3 +1,8 @@
 .center {
   text-align: center;
 }
+
+.error {
+  background-color: #f2cdcd;
+  border: 2px solid #db3737;
+}

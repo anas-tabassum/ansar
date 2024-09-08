@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+const apiKey = process.env.REACT_APP_API_KEY;
 
 const Ticket = () => {
+  const [airports, setAirports] = useState([]);
+  const apiKey = "AIzaSyA4hcHSBIuFwa44JG0Z1uZTOrIWsi5aLPw"; // Replace with your actual API key
+  const query = "Beijing"; // Your search query
+
+  // useEffect(() => {
+  //   fetch(`https://api.openaip.net/api/v1/airports?name=${query}`, {
+  //     headers: {
+  //       Authorization: `Bearer ${apiKey}`,
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => console.log(data))
+  //     .catch((error) => console.error("Error fetching data:", error));
+  // }, []);
+
   return (
     <div>
       <div className="w-full sm:w-1/2 mx-auto bg-white p-4 sm:p-8 rounded-lg shadow-lg">

@@ -1,0 +1,16 @@
+.videoBackground {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%); /* Center the video */
+  object-fit: cover; /* Ensures the video covers the container */
+  z-index: -1;
+  filter: blur(2px);
+}
+
+.hajj_container {
+}

@@ -5,6 +5,10 @@ import Contact from "../pages/Contact";
 import Gallery from "../pages/Gallery";
 import About from "../pages/About";
 import Guide from "../pages/Guide";
+import Hajj from "../pages/Hajj";
+import Umra from "../pages/Umra";
+import Ticket from "../pages/Ticket";
+
 import Navbar from "../components/Navbar";
 
 const MyRoutes = () => {
@@ -15,10 +19,13 @@ const MyRoutes = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
+          <Route path="hajj" element={<Hajj />} />
+          <Route path="umra" element={<Umra />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/guide" element={<Guide />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          <Route path="/ticket" element={<Ticket />} />
         </Routes>
       </Router>
     </div>

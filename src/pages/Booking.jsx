@@ -1,212 +1,202 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import Step1 from "./steps/Step1";
+import Step2 from "./steps/Step2";
+import Step3 from "./steps/Step3";
+import Step4 from "./steps/Step4";
 
 const Booking = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [phone, setPhone] = useState("");
-  const [people, setPeople] = useState("");
+  const [activeStep, setActiveStep] = useState(1);
+  const stepValidationRef = useRef(null); // Reference to validation function of the current step
 
+  // State for form data
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    address: "",
+    city: "",
+    country: "",
+    state: "",
+    phone: "",
+    people: "",
+    hajjBefore: "", // Additional fields for Step2
+    lastHajjYear: "",
+    campType: "",
+  });
+
+  // State to track validation errors
   const [errors, setErrors] = useState({});
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    let newErrors = {};
-    if (!name.trim()) {
-      newErrors.name = "Name cannot be empty.";
+  // Validation functions for each step
+  const validateStep1 = () => {
+    const stepErrors = {};
+    if (!formData.name.trim()) stepErrors.name = "Name cannot be empty.";
+    if (!formData.email.trim()) stepErrors.email = "Email cannot be empty.";
+    if (!formData.city.trim()) stepErrors.city = "City cannot be empty.";
+    if (!formData.country.trim())
+      stepErrors.country = "Country cannot be empty.";
+    if (!formData.phone.trim()) stepErrors.phone = "Phone cannot be empty.";
+
+    setErrors(stepErrors);
+    return Object.keys(stepErrors).length === 0;
+  };
+
+  const validateStep3 = () => {
+    const stepErrors = {};
+    if (!formData.people || formData.people < 1)
+      stepErrors.people = "At least one person is required.";
+
+    setErrors(stepErrors);
+    return Object.keys(stepErrors).length === 0;
+  };
+
+  const validateStep4 = () => {
+    // Add any specific validation for Step 4 here
+    setErrors({});
+    return true; // Assuming no validation is needed for Step 4
+  };
+
+  // Function to handle the "Next" button
+  const handleNext = () => {
+    let isValid = false;
+
+    switch (activeStep) {
+      case 1:
+        isValid = validateStep1();
+        break;
+      case 2:
+        if (stepValidationRef.current) {
+          isValid = stepValidationRef.current();
+        }
+        break;
+      case 3:
+        isValid = validateStep3();
+        break;
+      case 4:
+        isValid = validateStep4();
+        break;
+      default:
+        break;
     }
 
-    if (!email.trim()) {
-      newErrors.email = "Email cannot be empty.";
+    if (isValid && activeStep < 4) {
+      setErrors({}); // Clear errors before moving to the next step
+      setActiveStep((prevStep) => prevStep + 1);
     }
+  };
 
-    if (!city.trim()) {
-      newErrors.city = "City cannot be empty.";
+  // Function to handle the "Back" button
+  const handleBack = () => {
+    if (activeStep > 1) {
+      setErrors({}); // Clear errors when going back
+      setActiveStep((prevStep) => prevStep - 1);
     }
+  };
 
-    if (!country.trim()) {
-      newErrors.country = "Country cannot be empty.";
-    }
-
-    if (!phone.trim()) {
-      newErrors.phone = "Phone cannot be empty.";
-    }
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-    } else {
-      setErrors({});
-      let obj = {
-        name,
-        email,
-        phone,
-        country,
-        city,
-        address,
-        state,
-        people,
-      };
-
-      console.log(obj);
+  // Function to render the component based on the current step
+  const renderStepContent = () => {
+    switch (activeStep) {
+      case 1:
+        return (
+          <Step1
+            formData={formData}
+            setFormData={setFormData}
+            errors={errors}
+          />
+        );
+      case 2:
+        return (
+          <Step2
+            formData={formData}
+            setFormData={setFormData}
+            errors={errors}
+            setStepValidation={(validateForm) => {
+              stepValidationRef.current = validateForm;
+            }}
+          />
+        );
+      case 3:
+        return (
+          <Step3
+            formData={formData}
+            setFormData={setFormData}
+            errors={errors}
+          />
+        );
+      case 4:
+        return (
+          <Step4
+            formData={formData}
+            setFormData={setFormData}
+            errors={errors}
+          />
+        );
+      default:
+        return null;
     }
   };
 
   return (
-    <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
-      <div className="container max-w-screen-lg mx-auto">
-        <div>
-          <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-            <form
-              className="grid gap-6 gap-y-4 text-sm grid-cols-1 md:grid-cols-2"
-              onSubmit={submitHandler}
+    <div className="flex flex-col items-center justify-center">
+      {/* Step Progress Indicator */}
+      <div className="w-[80%]">
+        <ol className="flex items-center w-full text-xs text-gray-900 font-medium sm:text-base mb-4">
+          {[1, 2, 3, 4].map((step) => (
+            <li
+              key={step}
+              className={`flex w-full relative ${
+                activeStep >= step ? "text-indigo-600" : "text-gray-900"
+              } after:content-[''] after:w-full after:h-0.5 ${
+                activeStep > step ? "after:bg-indigo-600" : "after:bg-gray-200"
+              } after:inline-block after:absolute lg:after:top-5 after:top-3 after:left-4`}
             >
-              <div className="md:col-span-2">
-                <label htmlFor="full_name" className="block text-gray-700">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  name="full_name"
-                  id="full_name"
-                  className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${
-                    errors.name ? "error" : ""
-                  }`}
-                  placeholder="John Doe"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                {errors.name && <p className="text-red-500">{errors.name}</p>}
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-gray-700">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${
-                    errors.email ? "error" : ""
-                  }`}
-                  placeholder="email@domain.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                {errors.email && <p className="text-red-500">{errors.email}</p>}
-              </div>
-
-              <div>
-                <label htmlFor="zipcode" className="block text-gray-700">
-                  Phone
-                </label>
-                <input
-                  type="number"
-                  name="zipcode"
-                  id="zipcode"
-                  className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${
-                    errors.phone ? "error" : ""
-                  }`}
-                  placeholder="123-456-7890"
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-                {errors.phone && <p className="text-red-500">{errors.phone}</p>}
-              </div>
-
-              <div>
-                <label htmlFor="country" className="block text-gray-700">
-                  Country / Region
-                </label>
-                <input
-                  type="text"
-                  name="country"
-                  id="country"
-                  className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${
-                    errors.country ? "error" : ""
-                  }`}
-                  placeholder="Country"
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                />
-                {errors.country && (
-                  <p className="text-red-500">{errors.country}</p>
-                )}
-              </div>
-
-              <div>
-                <label htmlFor="city" className="block text-gray-700">
-                  City
-                </label>
-                <input
-                  type="text"
-                  name="city"
-                  id="city"
-                  className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${
-                    errors.city ? "error" : ""
-                  }`}
-                  placeholder="Anytown"
-                  onChange={(e) => setCity(e.target.value)}
-                />
-                {errors.city && <p className="text-red-500">{errors.city}</p>}
-              </div>
-
-              <div>
-                <label htmlFor="address" className="block text-gray-700">
-                  Address / Street
-                </label>
-                <input
-                  type="text"
-                  name="address"
-                  id="address"
-                  className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                  placeholder="1234 Main St"
-                  onChange={(e) => setAddress(e.target.value)}
-                />
-              </div>
-
-              <div>
-                <label htmlFor="state" className="block text-gray-700">
-                  State / Province
-                </label>
-                <input
-                  type="text"
-                  name="state"
-                  id="state"
-                  className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                  placeholder="State"
-                  onChange={(e) => setState(e.target.value)}
-                />
-              </div>
-
-              <div className="md:col-span-1">
-                <label htmlFor="soda" className="block text-gray-700">
-                  How many people?
-                </label>
-                <input
-                  name="soda"
-                  id="soda"
-                  placeholder="0"
-                  className="h-10 border mt-1 rounded px-4 w-20 bg-gray-50"
-                  type="number"
-                  min="1"
-                  max="20"
-                  value={people}
-                  onChange={(e) => setPeople(e.target.value)}
-                />
-              </div>
-
-              <div className="md:col-span-2 text-right">
-                <button
-                  type="submit"
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              <div className="block whitespace-nowrap z-10">
+                <span
+                  className={`w-6 h-6 ${
+                    activeStep >= step
+                      ? "bg-indigo-600 text-white"
+                      : "bg-gray-50 text-gray-900"
+                  } border-2 ${
+                    activeStep >= step
+                      ? "border-transparent"
+                      : "border-gray-200"
+                  } rounded-full flex justify-center items-center mx-auto mb-3 text-sm lg:w-10 lg:h-10`}
                 >
-                  Submit
-                </button>
+                  {step}
+                </span>{" "}
+                Step {step}
               </div>
-            </form>
+            </li>
+          ))}
+        </ol>
+
+        {/* Render Step Content */}
+        <div className="">{renderStepContent()}</div>
+
+        {/* Centered Next and Back Buttons */}
+        <div className="flex justify-center w-full mt-4 mb-4">
+          <div className="flex justify-between w-full max-w-xs">
+            <button
+              onClick={handleBack}
+              disabled={activeStep === 1}
+              className={`px-4 py-2 text-white rounded ${
+                activeStep === 1
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-indigo-600 hover:bg-indigo-700"
+              }`}
+            >
+              Back
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={activeStep === 4}
+              className={`px-4 py-2 text-white rounded ${
+                activeStep === 4
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-indigo-600 hover:bg-indigo-700"
+              }`}
+            >
+              Next
+            </button>
           </div>
         </div>
       </div>

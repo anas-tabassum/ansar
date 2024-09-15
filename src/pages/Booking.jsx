@@ -87,65 +87,54 @@ const Booking = () => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      {/* Step Progress Indicator */}
-      <div className="w-[80%]">
-        <ol className="flex items-center w-full text-xs text-gray-900 font-medium sm:text-base mb-4">
-          {[1, 2, 3, 4].map((step) => (
-            <li
-              key={step}
-              className={`flex w-full relative ${
-                activeStep >= step ? "text-indigo-600" : "text-gray-900"
-              } after:content-[''] after:w-full after:h-0.5 ${
-                activeStep > step ? "after:bg-indigo-600" : "after:bg-gray-200"
-              } after:inline-block after:absolute lg:after:top-5 after:top-3 after:left-4`}
-            >
-              <div className="block whitespace-nowrap z-10">
-                <span
-                  className={`w-6 h-6 ${
-                    activeStep >= step
-                      ? "bg-indigo-600 text-white"
-                      : "bg-gray-50 text-gray-900"
-                  } border-2 ${
-                    activeStep >= step
-                      ? "border-transparent"
-                      : "border-gray-200"
-                  } rounded-full flex justify-center items-center mx-auto mb-3 text-sm lg:w-10 lg:h-10`}
-                >
-                  {step}
-                </span>{" "}
-                Step {step}
-              </div>
-            </li>
-          ))}
-        </ol>
+      {/* Centering Container with Max Width */}
+      <div className="w-full max-w-3xl px-4">
+        {/* Step Progress Indicator */}
+        <div className="w-full">
+          <ol className="flex items-center w-full text-xs text-gray-900 font-medium sm:text-base mb-4">
+            {[1, 2, 3, 4].map((step, index) => (
+              <li
+                style={{ width: step === 4 ? "100px" : "" }}
+                key={step}
+                className={`flex w-full relative ${
+                  activeStep >= step ? "text-indigo-600" : "text-gray-900"
+                } ${
+                  index < 3 ? 'after:content-[""] after:w-full after:h-0.5' : ""
+                } ${
+                  activeStep > step && index < 3
+                    ? "after:bg-indigo-600"
+                    : index < 3
+                    ? "after:bg-gray-200"
+                    : ""
+                } ${
+                  index < 3
+                    ? "after:inline-block after:absolute lg:after:top-5 after:top-3 after:left-4"
+                    : ""
+                }`}
+              >
+                <div className="block whitespace-nowrap z-10">
+                  <span
+                    className={`w-6 h-6 ${
+                      activeStep >= step
+                        ? "bg-indigo-600 text-white"
+                        : "bg-gray-50 text-gray-900"
+                    } border-2 ${
+                      activeStep >= step
+                        ? "border-transparent"
+                        : "border-gray-200"
+                    } rounded-full flex justify-center items-center mx-auto mb-3 text-sm lg:w-10 lg:h-10`}
+                  >
+                    {step}
+                  </span>{" "}
+                  Step {step}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
 
         {/* Render Step Content */}
         <div>{renderStepContent()}</div>
-
-        {/* Centered Next and Back Buttons */}
-        {/* <div className="flex justify-center w-full mt-4 mb-4">
-          <div className="flex justify-between w-full max-w-xs">
-            <button
-              onClick={handleBack}
-              disabled={activeStep === 1}
-              className={`px-4 py-2 text-white rounded ${
-                activeStep === 1
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-indigo-600 hover:bg-indigo-700"
-              }`}
-            >
-              Back
-            </button>
-            {activeStep < 4 && (
-              <button
-                onClick={handleNext}
-                className="px-4 py-2 text-white rounded bg-indigo-600 hover:bg-indigo-700"
-              >
-                Next
-              </button>
-            )}
-          </div>
-        </div> */}
       </div>
     </div>
   );

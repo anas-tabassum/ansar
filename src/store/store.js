@@ -35,11 +35,15 @@ const initialState = {
     errors: {},
   },
   step3: {
-    // Initialize step3 state if necessary
+    travelers: [{ name: "", age: "", email: "", gender: "" }], // Array of travelers
     errors: {},
   },
   step4: {
-    // Initialize step4 state if necessary
+    directoryRestriction: "",
+    ageRestriction: "",
+    firstLanguage: "",
+    comments: "",
+    disabilities: "",
     errors: {},
   },
 };

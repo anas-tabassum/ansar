@@ -188,8 +188,8 @@ const Step1 = ({ handleNext, setStepValidation }) => {
                 />
               </div>
 
-              <div className="md:col-span-1 flex items-end">
-                <div className="w-full">
+              <div className="md:col-span-1 flex items-end justify-end">
+                <div className="w-full hidden">
                   <label htmlFor="people" className="block text-gray-700">
                     How many people?
                   </label>
@@ -200,7 +200,7 @@ const Step1 = ({ handleNext, setStepValidation }) => {
                     className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     type="number"
                     min="1"
-                    max="20"
+                    max="5"
                     value={people}
                     onChange={handleChange}
                   />
@@ -208,7 +208,7 @@ const Step1 = ({ handleNext, setStepValidation }) => {
                 {/* Move the button next to the input field */}
                 <button
                   type="submit"
-                  className="ml-4 mt-4 h-10 bg-indigo-600 text-white rounded px-4 py-2 hover:bg-indigo-700"
+                  className="ml-4 mt-4 h-10 bg-indigo-600 text-white rounded px-4 py-2 hover:bg-indigo-700 "
                 >
                   Next
                 </button>

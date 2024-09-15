@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateFormData, setErrors } from "../../store/store";
 
-const Step1 = ({ formData, setFormData, errors, handleNext }) => {
-  // Destructure formData to get individual fields
-  const { name, email, address, city, country, state, phone, people } =
+const Step1 = ({ handleNext, setStepValidation }) => {
+  const dispatch = useDispatch();
+  const formData = useSelector((state) => state.form.step1);
+  const { name, email, address, city, country, state, phone, people, errors } =
     formData;
+
+  // Make sure to provide the validation function to the parent
+  useEffect(() => {
+    setStepValidation(() => handleValidation);
+  }, [setStepValidation]);
 
   // Function to handle input changes
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    dispatch(updateFormData("step1", { [name]: value }));
   };
 
-  // Custom validation handler for this step
+  // Validation function for Step 1
   const handleValidation = () => {
     let newErrors = {};
     if (!name.trim()) {
@@ -36,26 +42,17 @@ const Step1 = ({ formData, setFormData, errors, handleNext }) => {
       newErrors.phone = "Phone cannot be empty.";
     }
 
-    return newErrors;
+    dispatch(setErrors("step1", newErrors));
+    return Object.keys(newErrors).length === 0; // Returns true if no errors
   };
 
   // Submit handler for validation and moving to the next step
   const submitHandler = (e) => {
     e.preventDefault();
-    const validationErrors = handleValidation();
+    const isValid = handleValidation();
 
-    if (Object.keys(validationErrors).length > 0) {
-      // If there are errors, update the errors state
-      setFormData((prevState) => ({
-        ...prevState,
-        errors: validationErrors,
-      }));
-    } else {
-      // If no errors, proceed to the next step
-      setFormData((prevState) => ({
-        ...prevState,
-        errors: {},
-      }));
+    if (isValid) {
+      dispatch(setErrors("step1", {})); // Clear any existing errors
       handleNext(); // Call handleNext to move to the next step
     }
   };
@@ -77,7 +74,7 @@ const Step1 = ({ formData, setFormData, errors, handleNext }) => {
                   type="text"
                   name="name"
                   id="name"
-                  className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${
+                  className={`w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                     errors.name ? "border-red-500" : ""
                   }`}
                   placeholder="John Doe"
@@ -95,7 +92,7 @@ const Step1 = ({ formData, setFormData, errors, handleNext }) => {
                   type="email"
                   name="email"
                   id="email"
-                  className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${
+                  className={`w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                     errors.email ? "border-red-500" : ""
                   }`}
                   placeholder="email@domain.com"
@@ -110,10 +107,10 @@ const Step1 = ({ formData, setFormData, errors, handleNext }) => {
                   Phone
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   name="phone"
                   id="phone"
-                  className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${
+                  className={`w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                     errors.phone ? "border-red-500" : ""
                   }`}
                   placeholder="123-456-7890"
@@ -131,7 +128,7 @@ const Step1 = ({ formData, setFormData, errors, handleNext }) => {
                   type="text"
                   name="country"
                   id="country"
-                  className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${
+                  className={`w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                     errors.country ? "border-red-500" : ""
                   }`}
                   placeholder="Country"
@@ -151,7 +148,7 @@ const Step1 = ({ formData, setFormData, errors, handleNext }) => {
                   type="text"
                   name="city"
                   id="city"
-                  className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${
+                  className={`w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                     errors.city ? "border-red-500" : ""
                   }`}
                   placeholder="Anytown"
@@ -161,8 +158,7 @@ const Step1 = ({ formData, setFormData, errors, handleNext }) => {
                 {errors.city && <p className="text-red-500">{errors.city}</p>}
               </div>
 
-              {/* Additional fields like address, state, and people */}
-              <div>
+              <div className="md:col-span-2">
                 <label htmlFor="address" className="block text-gray-700">
                   Address / Street
                 </label>
@@ -170,14 +166,14 @@ const Step1 = ({ formData, setFormData, errors, handleNext }) => {
                   type="text"
                   name="address"
                   id="address"
-                  className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                  className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   placeholder="1234 Main St"
                   value={address}
                   onChange={handleChange}
                 />
               </div>
 
-              <div>
+              <div className="md:col-span-1">
                 <label htmlFor="state" className="block text-gray-700">
                   State / Province
                 </label>
@@ -185,28 +181,37 @@ const Step1 = ({ formData, setFormData, errors, handleNext }) => {
                   type="text"
                   name="state"
                   id="state"
-                  className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                  className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   placeholder="State"
                   value={state}
                   onChange={handleChange}
                 />
               </div>
 
-              <div className="md:col-span-1">
-                <label htmlFor="people" className="block text-gray-700">
-                  How many people?
-                </label>
-                <input
-                  name="people"
-                  id="people"
-                  placeholder="0"
-                  className="h-10 border mt-1 rounded px-4 w-20 bg-gray-50"
-                  type="number"
-                  min="1"
-                  max="20"
-                  value={people}
-                  onChange={handleChange}
-                />
+              <div className="md:col-span-1 flex items-end">
+                <div className="w-full">
+                  <label htmlFor="people" className="block text-gray-700">
+                    How many people?
+                  </label>
+                  <input
+                    name="people"
+                    id="people"
+                    placeholder="0"
+                    className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    type="number"
+                    min="1"
+                    max="20"
+                    value={people}
+                    onChange={handleChange}
+                  />
+                </div>
+                {/* Move the button next to the input field */}
+                <button
+                  type="submit"
+                  className="ml-4 mt-4 h-10 bg-indigo-600 text-white rounded px-4 py-2 hover:bg-indigo-700"
+                >
+                  Next
+                </button>
               </div>
             </form>
           </div>

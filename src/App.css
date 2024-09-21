@@ -8,3 +8,19 @@
 }
 
 /* Ensure your styles are specific enough */
+
+.custom-margin-top {
+  margin-top: -2rem;
+}
+
+.services_ul {
+  text-align: center;
+}
+
+.services_ul li {
+  padding: 3px 10px;
+}
+
+.services_ul li a:hover {
+  color: rgb(26 86 219);
+}

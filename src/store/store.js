@@ -25,7 +25,6 @@ const initialState = {
     country: "",
     state: "",
     phone: "",
-    people: "",
     errors: {},
   },
   step2: {
@@ -39,7 +38,7 @@ const initialState = {
     errors: {},
   },
   step4: {
-    directoryRestriction: "",
+    dietaryRestriction: "",
     ageRestriction: "",
     firstLanguage: "",
     comments: "",

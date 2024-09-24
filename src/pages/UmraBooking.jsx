@@ -1,10 +1,9 @@
 import React, { useState, useRef } from "react";
 import Step1 from "./steps/Step1";
-import Step2 from "./steps/Step2";
 import Step3 from "./steps/Step3";
 import Step4 from "./steps/Step4";
 
-const Booking = () => {
+const Umra = () => {
   // Manage the active step locally
   const [activeStep, setActiveStep] = useState(1);
   const [errors, setErrors] = useState({});
@@ -21,7 +20,7 @@ const Booking = () => {
       isValid = stepValidationRef.current();
     }
 
-    if (isValid && activeStep < 4) {
+    if (isValid && activeStep < 3) {
       setErrors({}); // Clear errors before moving to the next step
       setActiveStep((prevStep) => prevStep + 1); // Move to the next step
     }
@@ -50,17 +49,6 @@ const Booking = () => {
         );
       case 2:
         return (
-          <Step2
-            errors={errors}
-            handleNext={handleNext}
-            handleBack={handleBack}
-            setStepValidation={(validateForm) => {
-              stepValidationRef.current = validateForm;
-            }}
-          />
-        );
-      case 3:
-        return (
           <Step3
             errors={errors}
             handleNext={handleNext}
@@ -70,7 +58,7 @@ const Booking = () => {
             }}
           />
         );
-      case 4:
+      case 3:
         return (
           <Step4
             errors={errors}
@@ -92,22 +80,22 @@ const Booking = () => {
         {/* Step Progress Indicator */}
         <div className="w-full">
           <ol className="flex items-center w-full text-xs text-gray-900 font-medium sm:text-base mb-4">
-            {[1, 2, 3, 4].map((step, index) => (
+            {[1, 2, 3].map((step, index) => (
               <li
-                style={{ width: step === 4 ? "100px" : "" }}
+                style={{ width: step === 3 ? "100px" : "" }}
                 key={step}
                 className={`flex w-full relative ${
                   activeStep >= step ? "text-indigo-600" : "text-gray-900"
                 } ${
-                  index < 3 ? 'after:content-[""] after:w-full after:h-0.5' : ""
+                  index < 2 ? 'after:content-[""] after:w-full after:h-0.5' : ""
                 } ${
-                  activeStep > step && index < 3
+                  activeStep > step && index < 2
                     ? "after:bg-indigo-600"
-                    : index < 3
+                    : index < 2
                     ? "after:bg-gray-200"
                     : ""
                 } ${
-                  index < 3
+                  index < 2
                     ? "after:inline-block after:absolute lg:after:top-5 after:top-3 after:left-4"
                     : ""
                 }`}
@@ -140,4 +128,4 @@ const Booking = () => {
   );
 };
 
-export default Booking;
+export default Umra;

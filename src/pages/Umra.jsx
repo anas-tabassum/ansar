@@ -22,7 +22,8 @@ const Umra = () => {
 
             <div className="mt-2 text-right">
               <Link
-                to="/book"
+                to="/umra_book"
+                state={{ identifier: "umra" }}
                 className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
               >
                 Book now

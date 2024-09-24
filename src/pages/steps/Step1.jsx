@@ -30,12 +30,20 @@ const Step1 = ({ handleNext, setStepValidation }) => {
       newErrors.email = "Email cannot be empty.";
     }
 
+    if (!address.trim()) {
+      newErrors.address = "Address cannot be empty.";
+    }
+
     if (!city.trim()) {
       newErrors.city = "City cannot be empty.";
     }
 
     if (!country.trim()) {
       newErrors.country = "Country cannot be empty.";
+    }
+
+    if (!state.trim()) {
+      newErrors.state = "State cannot be empty.";
     }
 
     if (!phone.trim()) {
@@ -166,11 +174,16 @@ const Step1 = ({ handleNext, setStepValidation }) => {
                   type="text"
                   name="address"
                   id="address"
-                  className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className={`w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                    errors.address ? "border-red-500" : ""
+                  }`}
                   placeholder="1234 Main St"
                   value={address}
                   onChange={handleChange}
                 />
+                {errors.address && (
+                  <p className="text-red-500">{errors.address}</p>
+                )}
               </div>
 
               <div className="md:col-span-1">
@@ -181,11 +194,14 @@ const Step1 = ({ handleNext, setStepValidation }) => {
                   type="text"
                   name="state"
                   id="state"
-                  className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className={`w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                    errors.state ? "border-red-500" : ""
+                  }`}
                   placeholder="State"
                   value={state}
                   onChange={handleChange}
                 />
+                {errors.state && <p className="text-red-500">{errors.state}</p>}
               </div>
 
               <div className="md:col-span-1 flex items-end justify-end">

@@ -117,7 +117,9 @@ const Step3 = ({ handleNext, handleBack, setStepValidation }) => {
             <input
               type="text"
               id={`travelerName_${index}`}
-              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className={`w-full border ${
+                errors[index]?.name ? "border-red-500" : "border-gray-300"
+              } rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500`}
               value={traveler.name}
               onChange={(e) => handleChange(index, "name", e.target.value)}
             />
@@ -136,7 +138,9 @@ const Step3 = ({ handleNext, handleBack, setStepValidation }) => {
             <input
               type="number"
               id={`travelerAge_${index}`}
-              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className={`w-full border ${
+                errors[index]?.age ? "border-red-500" : "border-gray-300"
+              } rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500`}
               value={traveler.age}
               min="5"
               onChange={(e) => handleChange(index, "age", e.target.value)}
@@ -156,7 +160,9 @@ const Step3 = ({ handleNext, handleBack, setStepValidation }) => {
             <input
               type="email"
               id={`travelerEmail_${index}`}
-              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className={`w-full border ${
+                errors[index]?.email ? "border-red-500" : "border-gray-300"
+              } rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500`}
               value={traveler.email}
               onChange={(e) => handleChange(index, "email", e.target.value)}
             />
@@ -175,7 +181,9 @@ const Step3 = ({ handleNext, handleBack, setStepValidation }) => {
             <select
               name={`travelerGender_${index}`}
               id={`travelerGender_${index}`}
-              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className={`w-full border ${
+                errors[index]?.gender ? "border-red-500" : "border-gray-300"
+              } rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500`}
               value={traveler.gender}
               onChange={(e) => handleChange(index, "gender", e.target.value)}
             >

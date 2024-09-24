@@ -62,7 +62,9 @@ const Step2 = ({ handleNext, handleBack, setStepValidation }) => {
           id="hajjBefore"
           value={hajjBefore}
           onChange={handleChange}
-          className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className={`w-full border ${
+            errors.hajjBefore ? "border-red-500" : "border-gray-300"
+          } rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500`}
         >
           <option value="" disabled>
             Select an option
@@ -90,7 +92,9 @@ const Step2 = ({ handleNext, handleBack, setStepValidation }) => {
           placeholder="2025"
           value={lastHajjYear}
           onChange={handleChange}
-          className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className={`w-full border ${
+            errors.lastHajjYear ? "border-red-500" : "border-gray-300"
+          } rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500`}
         />
         {errors.lastHajjYear && (
           <p className="text-red-500 text-sm mt-1">{errors.lastHajjYear}</p>
@@ -107,7 +111,9 @@ const Step2 = ({ handleNext, handleBack, setStepValidation }) => {
           id="campType"
           value={campType}
           onChange={handleChange}
-          className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className={`w-full border ${
+            errors.campType ? "border-red-500" : "border-gray-300"
+          } rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500`}
         >
           <option value="" disabled>
             Select your camp
@@ -124,7 +130,7 @@ const Step2 = ({ handleNext, handleBack, setStepValidation }) => {
       <div className="flex justify-between mt-4">
         <button
           onClick={handleBack}
-          className="ml-4 mt-4 h-10 bg-indigo-600 text-white rounded px-4 py-2 hover:bg-indigo-700"
+          className="mt-4 h-10 bg-indigo-600 text-white rounded px-4 py-2 hover:bg-indigo-700"
         >
           Previous
         </button>

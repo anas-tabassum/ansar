@@ -13,7 +13,7 @@ const Contact = () => {
         "https://img.freepik.com/premium-vector/usa-flag-vector-illustration_768467-359.jpg",
     },
     canada: {
-      email: "hadiza@ansarvoysge.com",
+      email: "hadiza@ansarvoyage.com",
       phone: "(888) 711 8079 ext: 1",
       city: "Montréal",
       state: "QC",
@@ -21,7 +21,7 @@ const Contact = () => {
         "https://img.freepik.com/free-vector/illustration-canada-flag_53876-27114.jpg?w=2000&t=st=1726919018~exp=1726919618~hmac=50f2aacb6102d5517521c9d37414f7b8982b5a9ca9a22c68b79aeb84b13a2b47",
     },
     niger: {
-      email: "nuhu@ansarvoysge.com",
+      email: "nuhu@ansarvoyage.com",
       phone: "227 87 27 27 20 | 92 72 27 27",
       city: "Niamey",
       state: "Niger",

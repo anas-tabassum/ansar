@@ -1,5 +1,5 @@
 import logo from "../media/logo.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -16,6 +16,16 @@ const Navbar = () => {
 
   const showServicesDropDown = () => {
     setServicesDropdown(true);
+  };
+
+  const navigate = useNavigate();
+
+  const handleNavigation = (event) => {
+    const value = event.target.value;
+    if (value) {
+      navigate(value);
+      hideDropDown();
+    }
   };
 
   return (
@@ -74,16 +84,18 @@ const Navbar = () => {
                   Home
                 </NavLink>
               </li>
+
+              {/* Services for desktop */}
               <li
                 id="dropdownDelayButton"
                 onMouseEnter={showServicesDropDown} // Show dropdown on hover
                 onMouseLeave={hideServicesDropDown} // Hide dropdown when mouse leaves
-                className="relative flex cursor-pointer ml-2"
+                className="relative flex cursor-pointer ml-2 z-50 hidden md:flex"
               >
                 Services
                 <svg
                   className="w-2.5 h-2.5 ms-3 mt-2"
-                  style={{ "margin-left": "3px" }}
+                  style={{ marginLeft: "3px" }}
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -99,7 +111,7 @@ const Navbar = () => {
                 </svg>
                 <div
                   id="dropdownDelay"
-                  style={{ "margin-left": "-3rem" }}
+                  style={{ marginLeft: "-3rem" }}
                   className={`absolute z-10 ${
                     servicesDropdown ? "block" : "hidden"
                   } bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 top-full`} // Positioning dropdown below Services
@@ -138,6 +150,18 @@ const Navbar = () => {
                   </ul>
                 </div>
               </li>
+
+              {/* Services for Mobile and Tablet */}
+              <select
+                onChange={handleNavigation}
+                className="appearance-none bg-transparent border-none text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent focus:outline-none focus:ring-0 focus:border-none focus:bg-transparent block py-2 px-3 cursor-pointer md:hidden"
+              >
+                <option value="">Select a service</option>
+                <option value="ticket">Book a ticket</option>
+                <option value="umra">Book a Umra</option>
+                <option value="hajj">Book a Hajj</option>
+              </select>
+
               <li>
                 <NavLink
                   to="/guide"

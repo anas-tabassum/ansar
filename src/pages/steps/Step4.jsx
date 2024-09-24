@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFormData, setErrors } from "../../store/store";
+import { useLocation } from "react-router-dom";
 
 const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  // Accessing the state
+  const { identifier } = location.state || null;
 
   // Accessing all steps data from Redux store
   const step1Data = useSelector((state) => state.form.step1);
@@ -13,7 +18,7 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
 
   const formData = step4Data;
   const {
-    directoryRestriction,
+    dietaryRestriction,
     ageRestriction,
     firstLanguage,
     comments,
@@ -30,8 +35,8 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
   const validateForm = () => {
     let newErrors = {};
 
-    if (!directoryRestriction) {
-      newErrors.directoryRestriction = "This field is required.";
+    if (!dietaryRestriction) {
+      newErrors.dietaryRestriction = "This field is required.";
     }
     if (!ageRestriction) {
       newErrors.ageRestriction = "This field is required.";
@@ -55,14 +60,48 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
   const handleFinalSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      const allData = {
-        step1: step1Data,
-        step2: step2Data,
-        step3: step3Data,
-        step4: step4Data,
-      };
-      console.log(allData);
-      alert("Form submitted successfully");
+      let data = {};
+
+      // Destructure and remove 'errors' from all step data
+      const { errors: step1Errors, ...cleanStep1Data } = step1Data;
+      const { errors: step2Errors, ...cleanStep2Data } = step2Data;
+      const { errors: step3Errors, ...cleanStep3Data } = step3Data;
+      const { errors: step4Errors, ...cleanStep4Data } = step4Data;
+
+      if (identifier == "hajj") {
+        data = {
+          ...cleanStep1Data,
+          ...cleanStep2Data,
+          ...cleanStep3Data,
+          ...cleanStep4Data,
+        };
+
+        fetch("http://localhost:4000/hajj_book", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data));
+      } else {
+        data = {
+          ...cleanStep1Data,
+          ...cleanStep3Data,
+          ...cleanStep4Data,
+        };
+
+        fetch("http://localhost:4000/umra_book", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data));
+      }
     }
   };
 
@@ -76,22 +115,24 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
           htmlFor="directoryRestriction"
           className="block text-gray-700 mb-2"
         >
-          Do you have any directory restriction?
+          Do you have any dietary restriction?
         </label>
         <select
           name="directoryRestriction"
           id="directoryRestriction"
-          className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          value={directoryRestriction}
-          onChange={(e) => handleChange("directoryRestriction", e.target.value)}
+          className={`w-full border ${
+            errors?.directoryRestriction ? "border-red-500" : "border-gray-300"
+          } rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500`}
+          value={dietaryRestriction}
+          onChange={(e) => handleChange("dietaryRestriction", e.target.value)}
         >
           <option value="">Select an option</option>
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
-        {errors?.directoryRestriction && (
+        {errors?.dietaryRestriction && (
           <p className="text-red-500 text-sm mt-1">
-            {errors.directoryRestriction}
+            {errors.dietaryRestriction}
           </p>
         )}
       </div>
@@ -104,7 +145,9 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
         <select
           name="ageRestriction"
           id="ageRestriction"
-          className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className={`w-full border ${
+            errors?.ageRestriction ? "border-red-500" : "border-gray-300"
+          } rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500`}
           value={ageRestriction}
           onChange={(e) => handleChange("ageRestriction", e.target.value)}
         >
@@ -126,7 +169,9 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
         <select
           name="disabilities"
           id="disabilities"
-          className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className={`w-full border ${
+            errors?.disabilities ? "border-red-500" : "border-gray-300"
+          } rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500`}
           value={disabilities}
           onChange={(e) => handleChange("disabilities", e.target.value)}
         >
@@ -147,7 +192,9 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
         <input
           type="text"
           id="firstLanguage"
-          className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className={`w-full border ${
+            errors?.firstLanguage ? "border-red-500" : "border-gray-300"
+          } rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500`}
           value={firstLanguage}
           onChange={(e) => handleChange("firstLanguage", e.target.value)}
         />

@@ -19,8 +19,9 @@ const Ticket = () => {
 
   return (
     <div>
-      <div className="w-full sm:w-1/2 mx-auto bg-white p-4 sm:p-8 rounded-lg shadow-lg">
-        <form className="w-full">
+      <div className="w-full sm:w-1/2 mx-auto bg-blue-200 p-4 sm:p-8 rounded-lg shadow-lg">
+        <h1 className="text-5xl text-center">Coming Soon</h1>
+        <form className="w-full hidden">
           {/* Radio Buttons for Trip Type */}
           <div className="mb-4">
             <div className="flex flex-wrap justify-between">
@@ -90,6 +91,34 @@ const Ticket = () => {
             </div>
           </div>
 
+          <div className="flex flex-wrap justify-between mb-4">
+            <div className="flex flex-col w-full sm:w-1/2 pr-2 mb-2 sm:mb-0">
+              <label htmlFor="departureDate" className="block mb-1">
+                Mobile:
+              </label>
+              <input
+                type="number"
+                id="number"
+                name="number"
+                placeholder="+1 234 5678"
+                className="border border-gray-300 rounded p-2 w-full"
+              />
+            </div>
+
+            <div className="flex flex-col w-full sm:w-1/2 pr-2 mb-2 sm:mb-0">
+              <label htmlFor="departureDate" className="block mb-1">
+                Email:
+              </label>
+              <input
+                type="email"
+                id="email"
+                placeholder="john123@email.com"
+                name="email"
+                className="border border-gray-300 rounded p-2 w-full"
+              />
+            </div>
+          </div>
+
           {/* Date Fields for Selection */}
           <div className="mb-4">
             <label htmlFor="departureDate" className="block mb-1">
@@ -137,7 +166,7 @@ const Ticket = () => {
               type="submit"
               className="bg-blue-600 text-white rounded p-2 w-full"
             >
-              Search Flights
+              Ticket Inquiry
             </button>
           </div>
         </form>

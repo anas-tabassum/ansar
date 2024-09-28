@@ -7,7 +7,9 @@ const Records = () => {
   // Fetch Hajj records
   const fetchHajjRecords = async () => {
     try {
-      const response = await fetch("http://localhost:4000/hajj_records"); // Replace with your API URL
+      const response = await fetch(
+        "https://ansar-backend.onrender.com/hajj_records"
+      ); // Replace with your API URL
       const data = await response.json();
       setHajjRecords(data.data); // Store the fetched Hajj records in state
     } catch (error) {
@@ -18,7 +20,9 @@ const Records = () => {
   // Fetch Umra records
   const fetchUmraRecords = async () => {
     try {
-      const response = await fetch("http://localhost:4000/umra_records"); // Replace with your API URL
+      const response = await fetch(
+        "https://ansar-backend.onrender.com/umra_records"
+      ); // Replace with your API URL
       const data = await response.json();
       setUmraRecords(data.data); // Store the fetched Umra records in state
     } catch (error) {

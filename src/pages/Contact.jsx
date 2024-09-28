@@ -6,7 +6,8 @@ const Contact = () => {
   const [information, setInformation] = useState({
     usa: {
       email: "boubacar@ansarvoyage.com",
-      phone: "(888) 711 8079 ext: 2",
+      secondary_email: "",
+      phone: "(888) 611-6995 ext: 2",
       city: "Cleveland",
       state: "Ohio",
       image:
@@ -14,14 +15,16 @@ const Contact = () => {
     },
     canada: {
       email: "hadiza@ansarvoyage.com",
-      phone: "(888) 711 8079 ext: 1",
+      secondary_email: "",
+      phone: "(888) 611-6995 ext: 1",
       city: "Montréal",
       state: "QC",
       image:
         "https://img.freepik.com/free-vector/illustration-canada-flag_53876-27114.jpg?w=2000&t=st=1726919018~exp=1726919618~hmac=50f2aacb6102d5517521c9d37414f7b8982b5a9ca9a22c68b79aeb84b13a2b47",
     },
     niger: {
-      email: "nuhu@ansarvoyage.com",
+      email: "info@ansarvoyage.com",
+      secondary_email: "nuhu@ansarvoyage.com",
       phone: "227 87 27 27 20 | 92 72 27 27",
       city: "Niamey",
       state: "Niger",
@@ -38,6 +41,7 @@ const Contact = () => {
             key={index}
             image={item.image}
             email={item.email}
+            secondary_email={item.secondary_email}
             phone={item.phone}
             city={item.city}
             state={item.state}

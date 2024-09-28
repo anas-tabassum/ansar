@@ -76,7 +76,7 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
           ...cleanStep4Data,
         };
 
-        fetch("http://localhost:4000/hajj_book", {
+        fetch("https://ansar-backend.onrender.com/hajj_book", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -92,7 +92,7 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
           ...cleanStep4Data,
         };
 
-        fetch("http://localhost:4000/umra_book", {
+        fetch("https://ansar-backend.onrender.com/umra_book", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

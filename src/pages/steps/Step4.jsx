@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFormData, setErrors } from "../../store/store";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Accessing the state
   const { identifier } = location.state || null;
@@ -84,7 +85,14 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
           body: JSON.stringify(data),
         })
           .then((response) => response.json())
-          .then((data) => console.log(data));
+          .then((data) => {
+            if (data.status == "success") {
+              alert("Registerd successfully");
+              navigate("/");
+            } else {
+              alert("Failed to register :(");
+            }
+          });
       } else {
         data = {
           ...cleanStep1Data,
@@ -100,7 +108,14 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
           body: JSON.stringify(data),
         })
           .then((response) => response.json())
-          .then((data) => console.log(data));
+          .then((data) => {
+            if (data.status == "success") {
+              alert("Registerd successfully");
+              navigate("/");
+            } else {
+              alert("Failed to register :(");
+            }
+          });
       }
     }
   };

@@ -21,7 +21,7 @@ const MyRoutes = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/records" element={<Records />} />
+          {/* <Route path="/records" element={<Records />} /> */}
           <Route path="/services" element={<Services />} />
           <Route path="hajj" element={<Hajj />} />
           <Route path="umra" element={<Umra />} />

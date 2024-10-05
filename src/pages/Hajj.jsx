@@ -22,40 +22,28 @@ const Hajj = () => {
       >
         HAJJ {year}
       </h1>
-      <p className={`text-center text-black text-xl ${styles.outline}`}>
-        START YOUR JOURNEY TODAY
+      <p className={`text-center text-black text-2xl ${styles.outline}`}>
+        Merci de votre confiance, et nous sommes impatients de vous accompagner
+        sur le chemin du Hajj 2025.
       </p>
 
       <div className="text-white text-justify p-8 flex flex-col justify-center items-center">
-        <p className={`text-black ${styles.hajj_description}`}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
-          obcaecati aspernatur architecto qui repudiandae iure impedit fuga.
-          Nam, id ab laborum sed mollitia, numquam est error eum, ex harum
-          itaque animi rerum doloribus cumque illo ratione quae sit repellat
-          magni ducimus explicabo modi suscipit? Suscipit neque iste cum vitae
-          animi, sit unde sed minima alias et pariatur porro, quod ab ut
-          reiciendis quo odit quisquam aliquid saepe inventore tempore. Adipisci
-          possimus eaque iste ducimus? Laboriosam in totam quas et at labore eum
-          laborum sapiente beatae facere amet, odio ipsam fugiat numquam quaerat
-          ratione assumenda enim aliquid doloremque doloribus necessitatibus
-          maxime! Doloremque atque, nisi molestiae quia incidunt corporis
-          debitis a laudantium placeat pariatur ex consequatur optio iure, quod
-          reprehenderit repellendus numquam architecto consectetur, non
-          veritatis vero doloribus nulla odio! Labore, aliquid obcaecati magni
-          nostrum illo dolores cupiditate possimus esse. Nam aut ullam a harum,
-          cupiditate soluta consectetur quaerat cum commodi exercitationem
-          laudantium praesentium reprehenderit quas neque earum in! Placeat
-          expedita beatae consequuntur dignissimos maiores dicta asperiores
-          libero fuga quasi, voluptatem tempore illo corrupti laboriosam quod
-          perspiciatis perferendis fugiat doloribus maxime amet, aliquid, aut
-          iste reprehenderit autem necessitatibus. Nisi recusandae vel assumenda
-          fugit, qui facilis debitis quaerat amet ad, at optio alias asperiores
-          adipisci quis necessitatibus! Officiis repudiandae ipsum, nisi soluta
-          voluptate tenetur numquam beatae expedita qui. Consequuntur eos
-          consectetur nostrum quibusdam eum reiciendis libero aperiam magnam
-          saepe, placeat, molestias earum vel qui omnis esse! Laboriosam,
-          consectetur ea labore ad totam est eveniet explicabo repellat quaerat
-          voluptate? Necessitatibus impedit laboriosam.
+        <p className={`text-black text-xl ${styles.hajj_description}`}>
+          Ansar Voyage est ravi d'annoncer le lancement de notre formulaire
+          d'intérêt pour le Hajj 2025. Si vous souhaitez rester informé et
+          recevoir des mises à jour régulières sur le prochain pèlerinage du
+          Hajj, vous êtes au bon endroit ! Il vous suffit de cliquer sur le lien
+          ci-dessous pour partager vos informations avec nous, et vous serez
+          ajouté à nos mises à jour exclusives sur le Hajj. Veuillez noter que
+          ce formulaire d'intérêt ne constitue pas une confirmation pour
+          garantir une place au Hajj 2025. Son unique objectif est de vous
+          assurer d'être parmi les premiers à recevoir les informations
+          essentielles de Ansar Voyage, ainsi que des mises à jour précieuses
+          dès qu'elles seront disponibles Chez Ansar Voyage, nous sommes ravis
+          de vous tenir informés de tout ce qui concerne le Hajj 2025. Votre
+          voyage spirituel commence ici, et nous avons hâte de le partager avec
+          vous. Merci de votre confiance, et nous sommes impatients de vous
+          accompagner sur le chemin du Hajj 2025.
         </p>
 
         <button className="bg-green-500 hover:bg-green-600  text-white font-bold py-2 px-4 rounded shadow-md transition duration-300 my-4">

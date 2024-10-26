@@ -1,37 +1,47 @@
-import { Link } from "react-router-dom";
+import UmraBackground from "../components/UmraBackground";
+import UmraCard from "../components/UmraCard";
 
 const Umra = () => {
+  const booking = [
+    {
+      title: "Oumra 2024",
+      start_date: "Dec 20,2024",
+      end_date: "Dec 30,2024",
+      price: 2700,
+    },
+    {
+      title: "Oumra 2024",
+      start_date: "Mar 17,2025",
+      end_date: "Mar 30,2025",
+      price: 2700,
+    },
+    {
+      title: "Oumra 2024",
+      start_date: "Jui 20,2025",
+      end_date: "Jui 30,2025",
+      price: 2500,
+    },
+    {
+      title: "Oumra 2025",
+      start_date: "Sep 20,2025",
+      end_date: "Sep 30,2025",
+      price: 2500,
+    },
+    {
+      title: "Oumra 2025",
+      start_date: "Dec 20,2025",
+      end_date: "Dec 30,2025",
+      price: 2500,
+    },
+  ];
   return (
     <div className="flex flex-col items-center px-4 py-8">
-      <h1 className="text-3xl font-bold text-center">Umra Packages</h1>
+      <h1 className="text-3xl font-bold text-center mt-44">Oumra Packages</h1>
+      <UmraBackground />
 
-      <div className="w-full max-w-lg md:max-w-4xl mt-8 p-4 md:p-6 rounded-lg bg-gray-200 border border-white-300 shadow-lg overflow-hidden">
-        <h2 className="text-xl font-semibold">Umra 2024</h2>
-
-        <div className="flex flex-col md:flex-row md:justify-between md:items-center mt-2">
-          <div className="flex flex-wrap space-x-2 md:space-x-4">
-            <p>Sept 20, 2024</p>
-            <p> - </p>
-            <p>Sept 30, 2024</p>
-          </div>
-
-          <div className="flex flex-col">
-            <div className="mt-2 md:mt-0 md:ml-auto">
-              <p className="text-right font-bold text-lg">Starting at $2500</p>
-            </div>
-
-            <div className="mt-2 text-right">
-              <Link
-                to="/umra_book"
-                state={{ identifier: "umra" }}
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Book now
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+      {booking.map((item, index) => (
+        <UmraCard item={item} key={index} />
+      ))}
     </div>
   );
 };

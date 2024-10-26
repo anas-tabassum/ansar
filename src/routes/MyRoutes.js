@@ -11,6 +11,7 @@ import Umra from "../pages/Umra";
 import Ticket from "../pages/Ticket";
 import HajjBooking from "../pages/HajjBooking";
 import UmraBooking from "../pages/UmraBooking";
+import HajjPackages from "../pages/HajjPackages";
 
 import Navbar from "../components/Navbar";
 
@@ -32,6 +33,7 @@ const MyRoutes = () => {
           <Route path="/ticket" element={<Ticket />} />
           <Route path="/hajj_book" element={<HajjBooking />} />
           <Route path="/umra_book" element={<UmraBooking />} />
+          <Route path="/hajj_packages" element={<HajjPackages />} />
         </Routes>
       </Router>
     </div>

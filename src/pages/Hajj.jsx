@@ -47,8 +47,8 @@ const Hajj = () => {
         </p>
 
         <button className="bg-green-500 hover:bg-green-600  text-white font-bold py-2 px-4 rounded shadow-md transition duration-300 my-4">
-          <Link to="/hajj_book" state={{ identifier: "hajj" }}>
-            Click here to Register
+          <Link to="/hajj_packages" state={{ identifier: "hajj" }}>
+            Veuillez Sélectionner Votre Forfait
           </Link>
         </button>
       </div>

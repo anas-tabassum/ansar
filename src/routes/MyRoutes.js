@@ -14,6 +14,9 @@ import UmraBooking from "../pages/UmraBooking";
 import HajjPackages from "../pages/HajjPackages";
 
 import Navbar from "../components/Navbar";
+import Hajj_Package_1 from "../pages/Hajj_Package_1";
+import Hajj_Package_2 from "../pages/Hajj_Package_2";
+import Hajj_Package_3 from "../pages/Hajj_Package_3";
 
 const MyRoutes = () => {
   return (
@@ -34,6 +37,9 @@ const MyRoutes = () => {
           <Route path="/hajj_book" element={<HajjBooking />} />
           <Route path="/umra_book" element={<UmraBooking />} />
           <Route path="/hajj_packages" element={<HajjPackages />} />
+          <Route path="/hajj_package_1" element={<Hajj_Package_1 />} />
+          <Route path="/hajj_package_2" element={<Hajj_Package_2 />} />
+          <Route path="/hajj_package_3" element={<Hajj_Package_3 />} />
         </Routes>
       </Router>
     </div>

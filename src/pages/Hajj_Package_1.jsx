@@ -8,20 +8,20 @@ const Hajj_Package_1 = () => {
         <div>
           <h1 className="text-4xl">Ansar Vip</h1>
           {/* Item 1 */}
-          <div className="item w-[20rem] flex justify-between mt-8 mb-8">
+          <div className="item flex justify-around w-[25rem] mt-8 mb-8">
             <div>
               <img
                 src="https://adamtravel.com/wp-content/uploads/2021/03/imgonline-com-ua-twotoone-1ujM8KfYXeaYut.png"
                 alt=""
               />
             </div>
-            <div className="text-lg">
+            <div className="text-lg ml-2">
               <div>Chambre Double</div>
-              <div>Prix:$15,000 Par PERSON</div>
+              <div>Prix: 9 050 000 CFA Par PERSON</div>
             </div>
           </div>
           {/* Item 2 */}
-          <div className="item w-[20rem] flex justify-between mt-8 mb-8">
+          <div className="item flex justify-around w-[25rem] mt-8 mb-8">
             <div>
               <img
                 src="https://adamtravel.com/wp-content/uploads/2021/03/imgonline-com-ua-twotoone-UyYyjda7cpBhoN.png"
@@ -30,20 +30,20 @@ const Hajj_Package_1 = () => {
             </div>
             <div className="text-lg">
               <div>Chambre Triple</div>
-              <div>Prix:$14,000 Par PERSON</div>
+              <div>Prix: 8 500 000 CFA Par PERSON</div>
             </div>
           </div>
           {/* Item 3 */}
-          <div className="item w-[20rem] flex justify-between mt-8 mb-8">
+          <div className="item flex justify-around w-[25rem] mt-8 mb-8">
             <div>
               <img
                 src="https://adamtravel.com/wp-content/uploads/2021/03/imgonline-com-ua-twotoone-JBUGuX7crl.png"
                 alt=""
               />
             </div>
-            <div className="text-lg">
+            <div className="text-lg mr-2">
               <div>Chambre Quadruple</div>
-              <div>Prix:$12,000 Par PERSON</div>
+              <div>Prix: 7 300 000 CFA Par PERSON</div>
             </div>
           </div>
 

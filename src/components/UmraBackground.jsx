@@ -1,7 +1,6 @@
-import video from "../media/mosque.mp4";
 import styles from "../styles/Umra.module.css";
 
-const HomeBackground = () => {
+const HomeBackground = ({ video }) => {
   return (
     <div>
       <video autoPlay loop muted playsInline className={styles.videoBackground}>

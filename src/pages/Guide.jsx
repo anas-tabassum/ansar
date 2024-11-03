@@ -1,11 +1,20 @@
 import Navbar from "../components/Navbar";
+import image from "../media/tent.jpg";
 
 const Guide = () => {
   return (
-    <div
-      className="mx-24 mx-auto p-4 sm:p-8 rounded-lg shadow-lg mx-12 my-4"
-      style={{ backgroundColor: "rgba(211, 211, 211,0.6)" }}
-    >
+    <div className="mx-24 mx-auto p-0 sm:p-4 rounded-lg shadow-lg mx-12">
+      <div className="mb-12">
+        <img
+          src={image}
+          alt="Image server down"
+          className="rounded-tl-md rounded-tr-md"
+          style={{
+            boxShadow: "1px 1px 13px black,-1px -1px 13px black",
+          }}
+        />
+      </div>
+
       <section id="hajj_guide">
         <p className="text-justify text-xl custom_font_raleway">
           <h2 className="text-4xl">Qu'est-ce que le Hajj</h2>

@@ -1,5 +1,7 @@
 import Navbar from "../components/Navbar";
 import image from "../media/holy1.jpg";
+import UmraBackground from "../components/UmraBackground";
+import video from "../media/sheikh_zayad_mosque.mp4";
 
 const About = () => {
   return (
@@ -8,17 +10,9 @@ const About = () => {
       style={{ wordSpacing: "8px" }}
     >
       <div className="flex justify-center">
-        <img
-          src={image}
-          alt="Image server down"
-          className="rounded-tl-md rounded-tr-md w-[75%]"
-          style={{
-            boxShadow:
-              "5px 5px 20px rgba(255, 165, 0, 0.9),-5px -5px 20px rgba(255, 165, 0, 0.9)",
-          }}
-        />
+        <UmraBackground video={video} />
       </div>
-      <p className="mt-8">
+      <p className="mt-8 mb-4 px-4 absolute bottom-5">
         La philosophie d’Ansar Voyage est de maintenir les normes les plus
         élevées en matière de service client personnalisé. Nous nous engageons à
         rester une ressource précieuse pour nos clients en offrant commodité,

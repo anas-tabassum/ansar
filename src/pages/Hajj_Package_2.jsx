@@ -6,22 +6,22 @@ const Hajj_Package_1 = () => {
     <div>
       <div className="flex justify-around">
         <div>
-          <h1 className="text-4xl">Ansar Forfait 1</h1>
+          <h1 className="text-4xl">Ansar Forfait Moyen</h1>
           {/* Item 1 */}
-          <div className="item w-[20rem] flex justify-between mt-8 mb-8">
+          <div className="item flex justify-around w-[25rem] mt-8 mb-8">
             <div>
               <img
                 src="https://adamtravel.com/wp-content/uploads/2021/03/imgonline-com-ua-twotoone-1ujM8KfYXeaYut.png"
                 alt=""
               />
             </div>
-            <div className="text-lg">
+            <div className="text-lg ml-2">
               <div>Chambre Double</div>
-              <div>Prix:$14,000 Par PERSON</div>
+              <div>Prix: 8 500 000 CFA Par PERSON</div>
             </div>
           </div>
           {/* Item 2 */}
-          <div className="item w-[20rem] flex justify-between mt-8 mb-8">
+          <div className="item flex justify-around w-[25rem] mt-8 mb-8">
             <div>
               <img
                 src="https://adamtravel.com/wp-content/uploads/2021/03/imgonline-com-ua-twotoone-UyYyjda7cpBhoN.png"
@@ -30,11 +30,11 @@ const Hajj_Package_1 = () => {
             </div>
             <div className="text-lg">
               <div>Chambre Triple</div>
-              <div>Prix:$13,000 Par PERSON</div>
+              <div>Prix: 7 900 000 CFA Par PERSON</div>
             </div>
           </div>
           {/* Item 3 */}
-          <div className="item w-[20rem] flex justify-between mt-8 mb-8">
+          <div className="item flex justify-around w-[25rem] mt-8 mb-8 mr-2">
             <div>
               <img
                 src="https://adamtravel.com/wp-content/uploads/2021/03/imgonline-com-ua-twotoone-JBUGuX7crl.png"
@@ -43,7 +43,7 @@ const Hajj_Package_1 = () => {
             </div>
             <div className="text-lg">
               <div>Chambre Quadruple</div>
-              <div>Prix:$11,000 Par PERSON</div>
+              <div>Prix: 6 600 000 CFA Par PERSON</div>
             </div>
           </div>
 

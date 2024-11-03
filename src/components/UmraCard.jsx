@@ -19,7 +19,7 @@ const UmraCard = ({ item }) => {
         <div className="flex flex-col">
           <div className="mt-2 md:mt-0 md:ml-auto">
             <p className="text-right font-bold text-lg">
-              Starting at ${item.price}
+              À partir de: {item.price} CFA
             </p>
           </div>
 

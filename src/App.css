@@ -36,3 +36,6 @@ h1 {
 .custom_font_raleway {
   font-family: "Raleway", sans-serif !important;
 }
+body {
+  overflow-x: hidden;
+}

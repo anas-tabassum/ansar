@@ -23,10 +23,11 @@ const HajjPackages = () => {
     },
   ];
   return (
-    <div className="">
-      {/* <h1 className="text-center text-4xl mb-12">Forfaits Hajj</h1> */}
-      <img src={Banner} alt="Hajj Banner" className="mb-12 h-[90%]" />
-      <div className="flex flex-col items-center justify-evenly md:flex-row">
+    <div>
+      <div className="flex justify-center mx-4 lg-mx-0">
+        <img src={Banner} alt="Hajj Banner" className="mb-12 h-[90%]" />
+      </div>
+      <div className="flex flex-col items-center justify-evenly md:flex-row overflow-y-hidden">
         {data && data.map((item) => <HajjCard item={item} />)}
       </div>
     </div>

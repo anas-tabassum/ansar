@@ -1,4 +1,4 @@
-import logo from "../media/logo.png";
+import logo from "../media/logo2.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 

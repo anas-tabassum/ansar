@@ -12,7 +12,7 @@ const About = () => {
       <div className="flex justify-center">
         <UmraBackground video={video} />
       </div>
-      <p className="mt-8 mb-4 px-4 absolute bottom-5">
+      <p className="mt-8 mb-4 px-4 absolute bottom-5 top-[15%] sm:top-[unset]">
         La philosophie d’Ansar Voyage est de maintenir les normes les plus
         élevées en matière de service client personnalisé. Nous nous engageons à
         rester une ressource précieuse pour nos clients en offrant commodité,

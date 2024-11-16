@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ContactCard from "../components/ContactCard";
 import ContactForm from "../components/ContactForm";
+import image from "../media/contact-us.jpg";
 
 const Contact = () => {
   const [information, setInformation] = useState({
@@ -35,6 +36,11 @@ const Contact = () => {
 
   return (
     <div className="container mx-auto p-4 grid gap-4 md:flex flex-col items:center">
+      <img
+        src={image}
+        className="rounded-md"
+        alt="Image is broken temporarily"
+      />
       <div className="flex flex-col justify-around w-[100%] md:flex-row">
         {Object.values(information).map((item, index) => (
           <ContactCard

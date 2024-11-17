@@ -83,7 +83,7 @@ const Step2 = ({ handleNext, handleBack, setStepValidation }) => {
           When did you last perform Hajj?
         </label>
         <input
-          type="text"
+          type="number"
           name="lastHajjYear"
           id="lastHajjYear"
           pattern="\d{4}"

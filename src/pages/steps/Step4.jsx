@@ -63,7 +63,6 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
     if (validateForm()) {
       let data = {};
 
-      // Destructure and remove 'errors' from all step data
       const { errors: step1Errors, ...cleanStep1Data } = step1Data;
       const { errors: step2Errors, ...cleanStep2Data } = step2Data;
       const { errors: step3Errors, ...cleanStep3Data } = step3Data;
@@ -77,7 +76,7 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
           ...cleanStep4Data,
         };
 
-        fetch("https://ansar-backend.onrender.com/hajj_book", {
+        fetch(`${process.env.REACT_APP_BACKEND_HOST}/hajj_book```, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -93,14 +92,13 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
               alert("Failed to register :(");
             }
           });
-      } else {
+      } else if(identifier == "umra"){
         data = {
           ...cleanStep1Data,
           ...cleanStep3Data,
           ...cleanStep4Data,
         };
-
-        fetch("https://ansar-backend.onrender.com/umra_book", {
+        fetch(`${process.env.REACT_APP_BACKEND_HOST}/umra_book`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -116,6 +114,8 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
               alert("Failed to register :(");
             }
           });
+      }else{
+        alert("Something went wrong!");
       }
     }
   };

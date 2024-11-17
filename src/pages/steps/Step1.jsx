@@ -115,7 +115,7 @@ const Step1 = ({ handleNext, setStepValidation }) => {
                   Phone
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   name="phone"
                   id="phone"
                   className={`w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 ${

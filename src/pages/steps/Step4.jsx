@@ -76,7 +76,7 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
           ...cleanStep4Data,
         };
 
-        fetch(`${process.env.REACT_APP_BACKEND_HOST}/hajj_book```, {
+        fetch(`${process.env.REACT_APP_BACKEND_HOST}hajj_book`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -98,7 +98,7 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
           ...cleanStep3Data,
           ...cleanStep4Data,
         };
-        fetch(`${process.env.REACT_APP_BACKEND_HOST}/umra_book`, {
+        fetch(`${process.env.REACT_APP_BACKEND_HOST}umra_book`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

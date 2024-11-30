@@ -2,9 +2,6 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const UmraCard = ({ item }) => {
-  useEffect(() => {
-    // console.log(props.item);
-  }, []);
   return (
     <div className="w-full max-w-lg md:max-w-4xl mt-8 p-4 md:p-6 rounded-lg bg-gray-200 border border-white-300 shadow-lg overflow-hidden">
       <h2 className="text-xl font-semibold">{item.title}</h2>
@@ -26,7 +23,7 @@ const UmraCard = ({ item }) => {
           <div className="mt-2 text-right">
             <Link
               to="/umra_book"
-              state={{ identifier: "umra" }}
+              state={{ identifier: "umra" ,meta:`${item.start_date} - ${item.end_date}`}}
               className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
             >
               Book now

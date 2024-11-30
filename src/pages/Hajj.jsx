@@ -4,12 +4,12 @@ import styles from "../styles/Hajj.module.css";
 import { Link } from "react-router-dom";
 
 const Hajj = () => {
-  let [year, setYear] = useState(0);
+  let [year, setYear] = useState(2025);
 
-  useEffect(() => {
-    let getYear = new Date().getFullYear();
-    setYear(getYear);
-  });
+  // useEffect(() => {
+  //   let getYear = new Date().getFullYear();
+  //   setYear(getYear);
+  // });
   return (
     <div className={styles.hajj_container}>
       <video autoPlay loop muted playsInline className={styles.videoBackground}>

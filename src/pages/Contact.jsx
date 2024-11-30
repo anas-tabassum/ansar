@@ -24,8 +24,8 @@ const Contact = () => {
         "https://img.freepik.com/free-vector/illustration-canada-flag_53876-27114.jpg?w=2000&t=st=1726919018~exp=1726919618~hmac=50f2aacb6102d5517521c9d37414f7b8982b5a9ca9a22c68b79aeb84b13a2b47",
     },
     niger: {
-      email: "info@ansarvoyage.com",
-      secondary_email: "nuhu@ansarvoyage.com",
+      email: "contact@ansarvoyage.com",
+      secondary_email: "nouhou@ansarvoyage.com",
       phone: "227 87 27 27 20 | 92 72 27 27",
       city: "Niamey",
       state: "Niger",

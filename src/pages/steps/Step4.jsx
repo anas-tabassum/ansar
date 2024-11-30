@@ -9,7 +9,7 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
   const navigate = useNavigate();
 
   // Accessing the state
-  const { identifier } = location.state || null;
+  const { identifier, meta } = location.state || null;
 
   // Accessing all steps data from Redux store
   const step1Data = useSelector((state) => state.form.step1);
@@ -74,6 +74,8 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
           ...cleanStep2Data,
           ...cleanStep3Data,
           ...cleanStep4Data,
+          encounter_type:identifier,
+          meta
         };
 
         fetch(`${process.env.REACT_APP_BACKEND_HOST}hajj_book`, {
@@ -97,6 +99,8 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
           ...cleanStep1Data,
           ...cleanStep3Data,
           ...cleanStep4Data,
+          encounter_type:identifier,
+          meta
         };
         fetch(`${process.env.REACT_APP_BACKEND_HOST}umra_book`, {
           method: "POST",

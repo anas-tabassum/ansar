@@ -22,9 +22,9 @@ const UmraCard = ({ item }) => {
 
           <div className="mt-2 text-right">
             <Link
-              to="/umra_book"
-              state={{ identifier: "umra" ,meta:`${item.start_date} - ${item.end_date}`}}
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                to="/umra_book"
+                state={{ identifier: "umra", meta: `${item.start_date} - ${item.end_date}` }}
+                className="bg-primary-btn hover:bg-primary-btn-hover text-white font-bold py-2 px-4 rounded"
             >
               Book now
             </Link>

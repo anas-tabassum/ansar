@@ -14,7 +14,7 @@ const HajjCard = ({ item }) => {
           </div>
           <div className={styles.flipCardBack}>
             <p className="px-4 py-2 text-justify">{item.text}</p>
-            <button class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">
+            <button class="bg-primary-btn hover:bg-primary-btn-hover text-white font-bold py-2 px-4 rounded">
               <Link to={`/${item.page}`}>Détails du Forfait</Link>
             </button>
           </div>

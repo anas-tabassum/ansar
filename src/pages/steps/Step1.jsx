@@ -224,7 +224,7 @@ const Step1 = ({ handleNext, setStepValidation }) => {
                 {/* Move the button next to the input field */}
                 <button
                   type="submit"
-                  className="ml-4 mt-4 h-10 bg-indigo-600 text-white rounded px-4 py-2 hover:bg-indigo-700 "
+                  className="ml-4 mt-4 h-10 bg-primary-btn text-white rounded px-4 py-2 hover:bg-primary-btn-hover "
                 >
                   Next
                 </button>

@@ -239,13 +239,13 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
       <div className="flex justify-between mt-4">
         <button
           onClick={handleBack}
-          className="h-10 bg-indigo-600 text-white rounded px-4 py-2 hover:bg-indigo-700"
+          className="mt-4 h-10 bg-primary-btn text-white rounded px-4 py-2 hover:bg-primary-btn-hover"
         >
           Previous
         </button>
         <button
           onClick={handleFinalSubmit}
-          className="h-10 bg-indigo-600 text-white rounded px-4 py-2 hover:bg-indigo-700"
+          className="ml-4 mt-4 h-10 bg-primary-btn text-white rounded px-4 py-2 hover:bg-primary-btn-hover"
         >
           Submit
         </button>

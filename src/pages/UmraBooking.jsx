@@ -85,12 +85,12 @@ const Umra = () => {
                 style={{ width: step === 3 ? "100px" : "" }}
                 key={step}
                 className={`flex w-full relative ${
-                  activeStep >= step ? "text-indigo-600" : "text-gray-900"
+                  activeStep >= step ? "text-primary-btn" : "text-gray-900"
                 } ${
                   index < 2 ? 'after:content-[""] after:w-full after:h-0.5' : ""
                 } ${
                   activeStep > step && index < 2
-                    ? "after:bg-indigo-600"
+                    ? "after:bg-primary-btn"
                     : index < 2
                     ? "after:bg-gray-200"
                     : ""
@@ -104,8 +104,8 @@ const Umra = () => {
                   <span
                     className={`w-6 h-6 ${
                       activeStep >= step
-                        ? "bg-indigo-600 text-white"
-                        : "bg-gray-50 text-gray-900"
+                        ? "bg-primary-btn text-white"
+                        : "bg-gray-50 text-primary-btn"
                     } border-2 ${
                       activeStep >= step
                         ? "border-transparent"
@@ -114,7 +114,7 @@ const Umra = () => {
                   >
                     {step}
                   </span>{" "}
-                  Step {step}
+                    Step {step}
                 </div>
               </li>
             ))}

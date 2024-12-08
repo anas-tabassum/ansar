@@ -49,20 +49,21 @@ const Hajj_Package_1 = () => {
 
           {/* Book button */}
           <div className="text-center">
-            <button class="px-8 z-30 py-4 bg-blue-800 rounded-md text-white relative font-semibold after:-z-20 after:absolute after:h-1 after:w-1 after:bg-blue-900 after:left-5 overflow-hidden after:bottom-0 after:translate-y-full after:rounded-md after:hover:scale-[300] after:hover:transition-all after:hover:duration-700 after:transition-all after:duration-700 transition-all duration-700 text-2xl">
-              <Link to="/hajj_book" state={{ identifier: "hajj", meta: 'Ansar Forfait Moyen' }}>Réserver Maintenant</Link>
+            <button
+                className="px-8 z-30 py-4 bg-primary-btn rounded-md text-white relative font-semibold after:-z-20 after:absolute after:h-1 after:w-1 after:bg-primary-btn-hover after:left-5 overflow-hidden after:bottom-0 after:translate-y-full after:rounded-md after:hover:scale-[300] after:hover:transition-all after:hover:duration-700 after:transition-all after:duration-700 transition-all duration-700 text-2xl">
+              <Link to="/hajj_book" state={{identifier: "hajj", meta: 'Ansar Forfait Moyen'}}>Réserver Maintenant</Link>
             </button>
           </div>
         </div>
         <div className="right_image">
           <img
-            src="https://adamtravel.com/wp-content/uploads/2021/03/tumblr_inline_p35hex5tZ61snaze1_500.jpg"
-            style={{
-              borderRadius: "1px 105px 24px 152px",
-              boxShadow: "-11px 0px 16px 0px rgba(0, 0, 0, 0.77)",
-            }}
-            className="w-[85%]"
-            alt=""
+              src="https://adamtravel.com/wp-content/uploads/2021/03/tumblr_inline_p35hex5tZ61snaze1_500.jpg"
+              style={{
+                borderRadius: "1px 105px 24px 152px",
+                boxShadow: "-11px 0px 16px 0px rgba(0, 0, 0, 0.77)",
+              }}
+              className="w-[85%]"
+              alt=""
           />
         </div>
       </div>

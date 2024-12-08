@@ -1,4 +1,3 @@
-import Navbar from "../components/Navbar";
 import image from "../media/tent.jpg";
 
 const Guide = () => {

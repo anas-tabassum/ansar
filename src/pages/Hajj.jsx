@@ -46,7 +46,7 @@ const Hajj = () => {
           accompagner sur le chemin du Hajj 2025.
         </p>
 
-        <button className="bg-green-500 hover:bg-green-600  text-white font-bold py-2 px-4 rounded shadow-md transition duration-300 my-4">
+        <button className="bg-primary-btn hover:bg-primary-btn-hover  text-white font-bold py-2 px-4 rounded shadow-md transition duration-300 my-4">
           <Link to="/hajj_packages" state={{ identifier: "hajj" }}>
             Veuillez Sélectionner Votre Forfait
           </Link>

@@ -98,12 +98,12 @@ const Hajj = () => {
                 style={{ width: step === 4 ? "100px" : "" }}
                 key={step}
                 className={`flex w-full relative ${
-                  activeStep >= step ? "text-indigo-600" : "text-gray-900"
+                  activeStep >= step ? "text-primary-btn" : "text-gray-900"
                 } ${
                   index < 3 ? 'after:content-[""] after:w-full after:h-0.5' : ""
                 } ${
                   activeStep > step && index < 3
-                    ? "after:bg-indigo-600"
+                    ? "after:bg-primary-btn"
                     : index < 3
                     ? "after:bg-gray-200"
                     : ""
@@ -117,7 +117,7 @@ const Hajj = () => {
                   <span
                     className={`w-6 h-6 ${
                       activeStep >= step
-                        ? "bg-indigo-600 text-white"
+                        ? "bg-primary-btn text-white"
                         : "bg-gray-50 text-gray-900"
                     } border-2 ${
                       activeStep >= step
@@ -127,7 +127,7 @@ const Hajj = () => {
                   >
                     {step}
                   </span>{" "}
-                  Step {step}
+                   Step {step}
                 </div>
               </li>
             ))}

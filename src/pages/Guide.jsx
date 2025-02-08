@@ -1,4 +1,5 @@
 import image from "../media/tent.jpg";
+import {Link} from "react-router-dom";
 
 const Guide = () => {
   return (
@@ -101,6 +102,10 @@ const Guide = () => {
               referrerpolicy="strict-origin-when-cross-origin"
               allowfullscreen
             ></iframe>
+          </div>
+
+          <div>
+            <Link to="/lecture" className="block text-center mt-4">Hajj Lessons</Link>
           </div>
         </p>
       </section>

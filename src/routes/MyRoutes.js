@@ -17,6 +17,7 @@ import Navbar from "../components/Navbar";
 import Hajj_Package_1 from "../pages/Hajj_Package_1";
 import Hajj_Package_2 from "../pages/Hajj_Package_2";
 import Hajj_Package_3 from "../pages/Hajj_Package_3";
+import Lecture from "../pages/Lecture";
 
 const MyRoutes = () => {
   return (
@@ -25,12 +26,12 @@ const MyRoutes = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/records" element={<Records />} /> */}
           <Route path="/services" element={<Services />} />
           <Route path="hajj" element={<Hajj />} />
           <Route path="umra" element={<Umra />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/guide" element={<Guide />} />
+           <Route path="/lecture" element={<Lecture />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/ticket" element={<Ticket />} />

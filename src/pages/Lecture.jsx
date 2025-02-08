@@ -12,7 +12,7 @@ const Lecture = () => {
     useEffect(() => {
         const fetchVideos = async () => {
             try {
-                const { data: { data } } = await axios.get("http://localhost:4000/lectures");
+                const { data: { data } } = await axios.get(`${process.env.REACT_APP_BACKEND_HOST}lectures`);
                 setVideos(data);
                 if (data.length > 0 && !activeVideo) {
                     setActiveVideo(data[0]);

@@ -14,10 +14,13 @@ const VideoListItem = ({ video, isActive, onClick }) => {
                     src={video.url}
                     preload="metadata"
                     muted
+                    onLoadedData={(e) => {
+                        e.target.currentTime = 0.1;
+                    }}
                 />
             </div>
-            <div className="flex-1">
-                <h3 className="font-medium text-sm mb-1">{video.title}</h3>
+            <div className="flex-1 min-w-0">
+                <h3 className="font-medium text-sm mb-1 truncate">{video.title}</h3>
                 <p className="text-xs text-gray-500 line-clamp-2">{video.description}</p>
             </div>
         </div>

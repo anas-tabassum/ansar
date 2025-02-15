@@ -1,26 +1,30 @@
-import React, {useEffect} from "react";
+// VideoPlayer.js
+import React, { useRef, useEffect } from "react";
 
-const VideoPlayer = ({ video, onLoad, autoPlay}) => {
-    const videoRef = React.useRef(null);
+const VideoPlayer = ({ video, autoPlay }) => {
+    const videoRef = useRef(null);
 
     useEffect(() => {
         if (autoPlay && videoRef.current) {
             videoRef.current.play().catch(error => {
+                console.log('Autoplay prevented:', error);
             });
         }
     }, [video, autoPlay]);
 
     return (
         <div className="w-full bg-white shadow-lg rounded-xl overflow-hidden">
-            <video
-                ref={videoRef}
-                className="w-full aspect-video object-cover"
-                src={video.url}
-                controls
-                key={video.id}
-                onLoadedData={onLoad}
-                muted={true}
-            />
+            <div className="aspect-video relative bg-black">
+                <video
+                    ref={videoRef}
+                    className="w-full h-full object-contain"
+                    src={video.url}
+                    controls
+                    playsInline
+                    key={video._id}
+                    muted={autoPlay}
+                />
+            </div>
             <div className="p-6 space-y-4">
                 <div className="border-b pb-4">
                     <h2 className="text-2xl font-semibold text-gray-800">{video.title}</h2>

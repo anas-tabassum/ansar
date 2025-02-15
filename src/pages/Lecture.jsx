@@ -6,12 +6,13 @@ import VideoListItem from "../components/VideoListItem";
 const Lecture = () => {
     const [videos, setVideos] = useState([]);
     const [activeVideo, setActiveVideo] = useState(null);
-    const [mainVideoLoaded, setMainVideoLoaded] = useState(false);
-    const [shouldAutoPlay, setShouldAutoPlay] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [autoPlay, isAutoPlay] = useState(false);
 
     useEffect(() => {
         const fetchVideos = async () => {
             try {
+                setIsLoading(true);
                 const { data: { data } } = await axios.get(`${process.env.REACT_APP_BACKEND_HOST}lectures`);
                 setVideos(data);
                 if (data.length > 0 && !activeVideo) {
@@ -19,20 +20,26 @@ const Lecture = () => {
                 }
             } catch (error) {
                 console.error("Error fetching videos:", error);
+            } finally {
+                setIsLoading(false);
             }
         };
 
         fetchVideos();
-    }, [activeVideo]);
+    }, []);
 
     const handleVideoSelect = (video) => {
         setActiveVideo(video);
-        setShouldAutoPlay(true);
+        isAutoPlay(true)
     };
 
-    const handleMainVideoLoad = () => {
-        setMainVideoLoaded(true);
-    };
+    if (isLoading) {
+        return (
+            <div className="container mx-auto p-6 flex items-center justify-center min-h-screen">
+                <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-300 border-t-blue-600" />
+            </div>
+        );
+    }
 
     return (
         <div className="container mx-auto p-6">
@@ -41,28 +48,27 @@ const Lecture = () => {
                 {videos.length > 0 && activeVideo && (
                     <div className="lg:w-3/4">
                         <VideoPlayer
+                            key={activeVideo._id} // Add key to force remount
                             video={activeVideo}
-                            onLoad={handleMainVideoLoad}
-                            autoPlay={shouldAutoPlay}
+                            autoPlay={autoPlay}
                         />
                     </div>
                 )}
 
-                {mainVideoLoaded && (
-                    <div className="lg:w-1/4 bg-white rounded-xl shadow-lg p-4">
-                        <h3 className="text-lg font-semibold mb-4">More Videos</h3>
-                        <div className="space-y-4">
-                            {videos.map((video) => (
-                                <VideoListItem
-                                    key={video._id}
-                                    video={video}
-                                    isActive={activeVideo && video._id === activeVideo._id}
-                                    onClick={handleVideoSelect}
-                                />
-                            ))}
-                        </div>
+                {/* Video list */}
+                <div className="lg:w-1/4 bg-white rounded-xl shadow-lg p-4">
+                    <h3 className="text-lg font-semibold mb-4">More Videos</h3>
+                    <div className="space-y-4">
+                        {videos.map((video) => (
+                            <VideoListItem
+                                key={video._id}
+                                video={video}
+                                isActive={activeVideo && video._id === activeVideo._id}
+                                onClick={handleVideoSelect}
+                            />
+                        ))}
                     </div>
-                )}
+                </div>
             </div>
         </div>
     );

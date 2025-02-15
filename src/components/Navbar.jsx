@@ -1,6 +1,7 @@
 import logo from "../media/logo2.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import CustomDropdown from "./CustomDropdown";
 
 const Navbar = () => {
   const [servicesDropdown, setServicesDropdown] = useState(false); // Initially set to false
@@ -20,8 +21,7 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
-  const handleNavigation = (event) => {
-    const value = event.target.value;
+  const handleNavigation = (value) => {
     if (value) {
       navigate(value);
       hideDropDown();
@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="bg-white border-gray-200 dark:bg-gray-900">
+      <nav className="bg-white border-gray-200 dark:bg-gray-900 relative z-50">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto custom-margin-top h-[9rem]">
           <NavLink
             to="/"
@@ -81,7 +81,7 @@ const Navbar = () => {
                       : "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                   }
                 >
-                  Home
+                  Accueil
                 </NavLink>
               </li>
 
@@ -117,7 +117,7 @@ const Navbar = () => {
                   } bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 top-full`} // Positioning dropdown below Services
                 >
                   <ul
-                    className="py-2 text-sm text-gray-700 dark:text-gray-200 services_ul"
+                    className="py-2 text-sm text-gray-700 dark:text-gray-200 services_ul !text-left text-[13px]"
                     aria-labelledby="dropdownDelayButton"
                   >
                     <li>
@@ -126,7 +126,7 @@ const Navbar = () => {
                         onClick={hideDropDown} // Close dropdown when clicked
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
-                        Book a ticket
+                        Réserver un billet
                       </NavLink>
                     </li>
                     <li>
@@ -135,7 +135,7 @@ const Navbar = () => {
                         onClick={hideDropDown} // Close dropdown when clicked
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
-                        Book a Umra
+                        Réserver une Omra
                       </NavLink>
                     </li>
                     <li>
@@ -144,7 +144,7 @@ const Navbar = () => {
                         onClick={hideDropDown} // Close dropdown when clicked
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
-                        Book a Hajj
+                        Réserver un Hajj
                       </NavLink>
                     </li>
                   </ul>
@@ -152,15 +152,7 @@ const Navbar = () => {
               </li>
 
               {/* Services for Mobile and Tablet */}
-              <select
-                onChange={handleNavigation}
-                className="appearance-none bg-transparent border-none text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent focus:outline-none focus:ring-0 focus:border-none focus:bg-transparent block py-2 px-3 cursor-pointer md:hidden"
-              >
-                <option value="">Select a service</option>
-                <option value="ticket">Book a ticket</option>
-                <option value="umra">Book a Umra</option>
-                <option value="hajj">Book a Hajj</option>
-              </select>
+              <CustomDropdown onSelect={handleNavigation} />
 
               <li>
                 <NavLink
@@ -185,7 +177,20 @@ const Navbar = () => {
                       : "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                   }
                 >
-                  Gallery
+                  Galerie
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/lesson"
+                  onClick={hideDropDown}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+                      : "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  }
+                >
+                  Leçons
                 </NavLink>
               </li>
               <li>
@@ -198,7 +203,7 @@ const Navbar = () => {
                       : "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                   }
                 >
-                  About
+                  À propos
                 </NavLink>
               </li>
               <li>

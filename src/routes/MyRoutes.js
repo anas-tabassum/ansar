@@ -31,7 +31,7 @@ const MyRoutes = () => {
           <Route path="umra" element={<Umra />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/guide" element={<Guide />} />
-           <Route path="/lecture" element={<Lecture />} />
+           <Route path="/lesson" element={<Lecture />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/ticket" element={<Ticket />} />

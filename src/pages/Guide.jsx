@@ -103,10 +103,6 @@ const Guide = () => {
               allowfullscreen
             ></iframe>
           </div>
-
-          <div>
-            <Link to="/lecture" className="block text-center mt-4">Hajj Lessons</Link>
-          </div>
         </p>
       </section>
 

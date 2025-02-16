@@ -13,7 +13,7 @@ const Lecture = () => {
         const fetchVideos = async () => {
             try {
                 setIsLoading(true);
-                const { data: { data } } = await axios.get(`${process.env.REACT_APP_BACKEND_HOST}lectures`);
+                const { data: { data } } = await axios.get(`${process.env.REACT_APP_BACKEND_HOST}lessons`);
                 setVideos(data);
                 if (data.length > 0 && !activeVideo) {
                     setActiveVideo(data[0]);

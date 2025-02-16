@@ -39,3 +39,8 @@ h1 {
 body {
   overflow-x: hidden;
 }
+
+input,textarea{
+  outline: none !important;
+  border: none !important;
+}

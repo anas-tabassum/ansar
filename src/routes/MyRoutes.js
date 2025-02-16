@@ -12,12 +12,20 @@ import Ticket from "../pages/Ticket";
 import HajjBooking from "../pages/HajjBooking";
 import UmraBooking from "../pages/UmraBooking";
 import HajjPackages from "../pages/HajjPackages";
+import AnsarDashboard from "../pages/AnsarDashboard";
+
+import AdminLesson from '../pages/admin/Lesson'
+import AdminUmrah from '../pages/admin/Umrah'
+import AdminHajj from '../pages/admin/Hajj'
 
 import Navbar from "../components/Navbar";
 import Hajj_Package_1 from "../pages/Hajj_Package_1";
 import Hajj_Package_2 from "../pages/Hajj_Package_2";
 import Hajj_Package_3 from "../pages/Hajj_Package_3";
 import Lecture from "../pages/Lecture";
+import Login from "../pages/Login";
+import PrivateRoute from "./PrivateRoute";
+
 
 const MyRoutes = () => {
   return (
@@ -31,6 +39,13 @@ const MyRoutes = () => {
           <Route path="umra" element={<Umra />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/guide" element={<Guide />} />
+          <Route path="/ansar-login" element={<Login />} />
+          <Route path="admin/*" element={<PrivateRoute />}>
+          <Route index element={<AnsarDashboard />} />
+            <Route path="lesson" element={<AdminLesson />} />
+            <Route path="umrah" element={<AdminUmrah />} />
+            <Route path="hajj" element={<AdminHajj />} />
+          </Route>
            <Route path="/lesson" element={<Lecture />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />

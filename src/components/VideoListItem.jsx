@@ -8,7 +8,7 @@ const VideoListItem = ({ video, isActive, onClick }) => {
             }`}
             onClick={() => onClick(video)}
         >
-            <div className="relative w-40 h-24 flex-shrink-0">
+            <div className="relative w-40 h-24 flex-shrink-0 relative">
                 <video
                     className="w-full h-full object-cover rounded-lg"
                     src={video.url}
@@ -18,7 +18,9 @@ const VideoListItem = ({ video, isActive, onClick }) => {
                         e.target.currentTime = 0.1;
                     }}
                 />
+                <img width="100" height="100" src="/video-icon.svg" alt="video" className="block md:hidden absolute -top-1"/>
             </div>
+
             <div className="flex-1 min-w-0">
                 <h3 className="font-medium text-sm mb-1 truncate">{video.title}</h3>
                 <p className="text-xs text-gray-500 line-clamp-2">{video.description}</p>

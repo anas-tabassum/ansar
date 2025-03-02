@@ -41,7 +41,7 @@ const MyRoutes = () => {
           <Route path="/guide" element={<Guide />} />
           <Route path="/ansar-login" element={<Login />} />
           <Route path="admin/*" element={<PrivateRoute />}>
-          <Route index element={<AnsarDashboard />} />
+            <Route index element={<AnsarDashboard />} />
             <Route path="lesson" element={<AdminLesson />} />
             <Route path="umrah" element={<AdminUmrah />} />
             <Route path="hajj" element={<AdminHajj />} />

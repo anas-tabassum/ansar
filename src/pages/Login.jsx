@@ -21,8 +21,10 @@ const AdminLogin = () => {
             const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_HOST}admin-login`, { email, password });
 
             if (data.success) {
-                localStorage.setItem('token', data.token);
-                navigate('/admin');
+                sessionStorage.setItem('token', data.token);
+                setTimeout(() => {
+                    navigate('/admin');
+                }, 500);
             } else {
                 setError(data.message);
             }
@@ -38,15 +40,52 @@ const AdminLogin = () => {
             <Box sx={{ minHeight: '70vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Paper elevation={3} sx={{ p: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
                     <Typography component="h1" variant="h5" sx={{ mb: 3 }}>Admin Login</Typography>
-                    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, width: '100%' }}>
-                        <TextField margin="normal" required fullWidth label="Email Address" autoComplete="email"
-                                   placeholder="admin@example.com" value={email} onChange={(e) => setEmail(e.target.value)}
-                                   InputProps={{ startAdornment: <InputAdornment position="start"><EmailIcon color="action" /></InputAdornment> }} />
-                        <TextField margin="normal" required fullWidth label="Password" type="password" autoComplete="current-password"
-                                   placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)}
-                                   InputProps={{ startAdornment: <InputAdornment position="start"><LockIcon color="action" /></InputAdornment> }} />
+                    <Box
+                        component="form"
+                        onSubmit={handleSubmit}
+                        sx={{ mt: 1, width: '100%' }}
+                        method="post"
+                        id="loginForm"
+                    >
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            name="email"
+                            label="Email Address"
+                            autoComplete="username email"
+                            placeholder="admin@example.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            InputProps={{
+                                startAdornment: <InputAdornment position="start"><EmailIcon color="action" /></InputAdornment>
+                            }}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="password"
+                            name="password"
+                            label="Password"
+                            type="password"
+                            autoComplete="current-password"
+                            placeholder="********"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            InputProps={{
+                                startAdornment: <InputAdornment position="start"><LockIcon color="action" /></InputAdornment>
+                            }}
+                        />
                         {error && <Alert severity="error" sx={{ mt: 2 }}>{error}</Alert>}
-                        <Button type="submit" fullWidth variant="contained" disabled={loading} sx={{ mt: 3, mb: 2, height: 48 }}>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            disabled={loading}
+                            sx={{ mt: 3, mb: 2, height: 48 }}
+                        >
                             {loading ? <CircularProgress size={24} color="inherit" /> : 'Sign In'}
                         </Button>
                     </Box>

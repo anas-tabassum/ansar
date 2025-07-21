@@ -3,7 +3,7 @@ import styles from "../styles/Home.module.css";
 const HomeBackground = () => {
   return (
     <div>
-      <video preload="auto" autoPlay loop muted playsInline className={styles.videoBackground}>
+      <video preload="auto" autoPlay loop muted playsInline className={styles.videoBackground} controls={false}>
         <source src="https://ansarv1.s3.us-east-2.amazonaws.com/videos/camel.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>

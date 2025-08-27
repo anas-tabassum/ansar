@@ -8,7 +8,7 @@ const Contact = () => {
     usa: {
       email: "boubacar@ansarvoyage.com",
       secondary_email: "",
-      phone: "(888) 611-6995 ext: 2",
+      phone: " 1 (800) 912-4232",
       city: "Cleveland",
       state: "Ohio",
       image:
@@ -17,7 +17,7 @@ const Contact = () => {
     canada: {
       email: "hadiza@ansarvoyage.com",
       secondary_email: "",
-      phone: "(888) 611-6995 ext: 1",
+      phone: " 1 (800) 912-4232",
       city: "Montréal",
       state: "QC",
       image:

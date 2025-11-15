@@ -5,7 +5,7 @@ import image from "../media/contact-us.jpg";
 import QRCode from "react-qr-code";
 
 const Contact = () => {
-  const [information, setInformation] = useState({
+  const [information] = useState({
     usa: {
       email: "boubacar@ansarvoyage.com",
       secondary_email: "",
@@ -51,11 +51,11 @@ const Contact = () => {
       <img
         src={image}
         className="rounded-md"
-        alt="Image is broken temporarily"
+        alt="Contact us banner"
       />
       
       {/* Contact Cards Row */}
-      <div className="flex flex-col justify-around w-[100%] md:flex-row gap-4">
+      <div className="flex flex-col justify-around w-full md:flex-row gap-4">
         {Object.values(information).map((item, index) => (
           <ContactCard
             key={index}
@@ -69,8 +69,8 @@ const Contact = () => {
         ))}
       </div>
 
-      {/* Documents Section - Below Niger card, aligned to the left */}
-      <div className="w-[100%] md:flex md:justify-start">
+      {/* Documents Section - Below cards, aligned to the left */}
+      <div className="w-full md:flex md:justify-start">
         <div className="w-full md:w-[32%] bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
           <div id="niger-documents">
             <h3 className="text-lg font-bold text-gray-800 mb-4">

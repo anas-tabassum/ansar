@@ -13,7 +13,6 @@ const Contact = () => {
       state: "Ohio",
       image:
         "https://img.freepik.com/premium-vector/usa-flag-vector-illustration_768467-359.jpg",
-      documents: [], // Empty array for consistency
     },
     canada: {
       email: "hadiza@ansarvoyage.com",
@@ -23,7 +22,6 @@ const Contact = () => {
       state: "QC",
       image:
         "https://img.freepik.com/free-vector/illustration-canada-flag_53876-27114.jpg?w=2000&t=st=1726919018~exp=1726919618~hmac=50f2aacb6102d5517521c9d37414f7b8982b5a9ca9a22c68b79aeb84b13a2b47",
-      documents: [], // Empty array for consistency
     },
     niger: {
       email: "contact@ansarvoyage.com",
@@ -33,21 +31,11 @@ const Contact = () => {
       state: "Niger",
       image:
         "https://media.istockphoto.com/id/1486090603/photo/flag-of-niger-with-a-cloth-texture-effect.jpg?s=612x612&w=0&k=20&c=GUzsu0pEuR5pvXGrVephUFeoOV9cdQso60rxVUyf8WE=",
-      documents: [
-        {
-          label: "Checklist des erreurs Hadj / Oumra",
-          href: "/docs/Ansar_Voyage_Checklist_Erreurs.pdf",
-        },
-        {
-          label: "Checklist Valise du Pèlerin",
-          href: "/docs/Ansar_Voyage_Checklist_Valise.pdf",
-        },
-      ],
     },
   });
 
   return (
-    <div className="container mx-auto p-4 grid gap-4 md:flex flex-col items-center">
+    <div className="container mx-auto p-4 grid gap-4 md:flex flex-col items:center">
       <img
         src={image}
         className="rounded-md"
@@ -63,7 +51,6 @@ const Contact = () => {
             phone={item.phone}
             city={item.city}
             state={item.state}
-            documents={item.documents}
           />
         ))}
       </div>

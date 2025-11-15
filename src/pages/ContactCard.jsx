@@ -1,5 +1,4 @@
 import React from "react";
-import QRCode from "react-qr-code";
 
 const ContactCard = ({
   image,
@@ -8,7 +7,6 @@ const ContactCard = ({
   phone,
   city,
   state,
-  documents = [],
 }) => {
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 w-full md:w-[32%] hover:shadow-xl transition-shadow">
@@ -62,47 +60,11 @@ const ContactCard = ({
             {city}, {state}
           </p>
         </div>
-
-        {/* Documents Section - Only for Niger */}
-        {documents && documents.length > 0 && (
-          <div id="niger-documents" className="mt-4 pt-3 border-t border-gray-200">
-            <p className="text-sm font-semibold text-gray-700 mb-2">
-              📄 Documents utiles :
-            </p>
-            <div className="space-y-2">
-              {documents.map((doc, index) => (
-                <div key={index}>
-                  
-                    href={doc.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 hover:underline text-sm block"
-                    download
-                  >
-                    📥 {doc.label}
-                  </a>
-                </div>
-              ))}
-            </div>
-
-            {/* QR Code Section */}
-            <div className="mt-4 pt-3 border-t border-gray-200">
-              <p className="text-xs font-semibold text-gray-700 mb-2">
-                Scannez le QR code :
-              </p>
-              <div className="bg-white p-2 rounded-md border border-gray-300 inline-block">
-                <QRCode
-                  value="https://ansarvoyage.com/contact#niger-documents"
-                  size={80}
-                  level="M"
-                />
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
 };
 
 export default ContactCard;
+
+

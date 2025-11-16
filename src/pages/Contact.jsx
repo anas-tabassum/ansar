@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import ContactCard from "../components/ContactCard";
 import ContactForm from "../components/ContactForm";
 import image from "../media/contact-us.jpg";
 import QRCode from "react-qr-code";
 
 const Contact = () => {
+  const [downloadingDoc, setDownloadingDoc] = useState(null);
+
   const information = {
     usa: {
       email: "boubacar@ansarvoyage.com",
@@ -45,15 +47,52 @@ const Contact = () => {
     }
   ];
 
-  // Function to handle document download
-  const handleDownload = (url, filename) => {
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  // Function to handle document download - forces automatic download
+  const handleDownload = async (url, filename, docIndex) => {
+    try {
+      // Set downloading state
+      setDownloadingDoc(docIndex);
+      
+      // Fetch the PDF file as a blob
+      const response = await fetch(url);
+      const blob = await response.blob();
+      
+      // Create a blob URL
+      const blobUrl = window.URL.createObjectURL(blob);
+      
+      // Create a temporary anchor element and trigger download
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = filename; // This forces download with the specified filename
+      link.style.display = 'none';
+      
+      // Append to body, click, and remove
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Clean up the blob URL after a short delay
+      setTimeout(() => {
+        window.URL.revokeObjectURL(blobUrl);
+      }, 100);
+      
+      // Clear downloading state
+      setDownloadingDoc(null);
+    } catch (error) {
+      console.error('Download failed:', error);
+      // Fallback method if fetch fails (e.g., CORS issues)
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      link.setAttribute('download', filename);
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Clear downloading state
+      setDownloadingDoc(null);
+    }
   };
 
   return (
@@ -108,11 +147,12 @@ const Contact = () => {
                     <span>Voir</span>
                   </a>
                   <button
-                    onClick={() => handleDownload(doc.url, doc.filename)}
-                    className="flex items-center space-x-1 text-blue-600 hover:underline text-sm bg-transparent border-none cursor-pointer p-0"
+                    onClick={() => handleDownload(doc.url, doc.filename, idx)}
+                    disabled={downloadingDoc === idx}
+                    className="flex items-center space-x-1 text-blue-600 hover:underline text-sm bg-transparent border-none cursor-pointer p-0 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <span>📥</span>
-                    <span>Télécharger</span>
+                    <span>{downloadingDoc === idx ? '⏳' : '📥'}</span>
+                    <span>{downloadingDoc === idx ? 'Téléchargement...' : 'Télécharger'}</span>
                   </button>
                 </div>
               </div>

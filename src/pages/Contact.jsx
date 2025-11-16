@@ -82,7 +82,7 @@ const Contact = () => {
           
           <div className="space-y-3 mb-6">
             {nigerDocs.map((doc, idx) => (
-              
+             <a  
                 key={idx}
                 href={doc.url}
                 target="_blank"

@@ -35,13 +35,26 @@ const Contact = () => {
   const nigerDocs = [
     {
       label: "Checklist des erreurs Hadj / Oumra",
-      url: "https://ansarv1.s3.us-east-2.amazonaws.com/images/Ansar_Voyage_Checklist_Erreurs%5B2%5D.pdf"
+      url: "https://ansarv1.s3.us-east-2.amazonaws.com/images/Ansar_Voyage_Checklist_Erreurs%5B2%5D.pdf",
+      filename: "Checklist_Erreurs_Hadj_Oumra.pdf"
     },
     {
       label: "Checklist Valise du Pèlerin",
-      url: "https://ansarv1.s3.us-east-2.amazonaws.com/images/Ansar_Voyage_Checklist_Valise%5B1%5D.pdf"
+      url: "https://ansarv1.s3.us-east-2.amazonaws.com/images/Ansar_Voyage_Checklist_Valise%5B1%5D.pdf",
+      filename: "Checklist_Valise_Pelerin.pdf"
     }
   ];
+
+  // Function to handle document download
+  const handleDownload = (url, filename) => {
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <div className="container mx-auto p-4 grid gap-4 md:flex flex-col items-center">
@@ -80,17 +93,29 @@ const Contact = () => {
             Documents pour le Niger
           </h3>
           
-          <div className="space-y-3 mb-6">
+          <div className="space-y-4 mb-6">
             {nigerDocs.map((doc, idx) => (
-             <a  
-                key={idx}
-                href={doc.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-2 text-blue-600 hover:underline text-sm"
-              >
-                <span>📥 {doc.label}</span>
-              </a>
+              <div key={idx} className="flex flex-col space-y-2">
+                <span className="text-sm font-medium text-gray-700">{doc.label}</span>
+                <div className="flex space-x-3">
+                  <a  
+                    href={doc.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-1 text-blue-600 hover:underline text-sm"
+                  >
+                    <span>👁️</span>
+                    <span>Voir</span>
+                  </a>
+                  <button
+                    onClick={() => handleDownload(doc.url, doc.filename)}
+                    className="flex items-center space-x-1 text-blue-600 hover:underline text-sm bg-transparent border-none cursor-pointer p-0"
+                  >
+                    <span>📥</span>
+                    <span>Télécharger</span>
+                  </button>
+                </div>
+              </div>
             ))}
           </div>
 

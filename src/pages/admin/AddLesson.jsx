@@ -1,13 +1,62 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import Quill from 'quill';
+import 'quill/dist/quill.snow.css';
 
 const AddLesson = ({onLessonAdded}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [title, setTitle] = useState('');
     const [url, setUrl] = useState('');
     const [description, setDescription] = useState('');
+    const quillRef = useRef(null);
+    const quillInstance = useRef(null);
 
-    const toggleModal = () => setIsOpen(!isOpen);
+    useEffect(() => {
+        if (isOpen && quillRef.current && !quillInstance.current) {
+            // Initialize Quill editor
+            quillInstance.current = new Quill(quillRef.current, {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [1, 2, 3, false] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{ 'color': [] }, { 'background': [] }],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        [{ 'align': [] }],
+                        ['blockquote', 'code-block'],
+                        ['link'],
+                        ['clean']
+                    ]
+                },
+                placeholder: 'Enter lesson description...'
+            });
+
+            // Set initial content if editing
+            if (description) {
+                quillInstance.current.root.innerHTML = description;
+            }
+
+            // Update state when content changes
+            quillInstance.current.on('text-change', () => {
+                const html = quillInstance.current.root.innerHTML;
+                setDescription(html === '<p><br></p>' ? '' : html);
+            });
+        }
+
+        // Cleanup
+        return () => {
+            if (!isOpen && quillInstance.current) {
+                quillInstance.current = null;
+            }
+        };
+    }, [isOpen]);
+
+    const toggleModal = () => {
+        if (isOpen && quillInstance.current) {
+            quillInstance.current = null;
+        }
+        setIsOpen(!isOpen);
+    };
 
     // Create a new lesson
     const handleCreate = async () => {
@@ -33,6 +82,9 @@ const AddLesson = ({onLessonAdded}) => {
             setTitle('');
             setUrl('');
             setDescription('');
+            if (quillInstance.current) {
+                quillInstance.current.setText('');
+            }
             toggleModal();
             onLessonAdded();
         } catch (err) {
@@ -85,11 +137,13 @@ const AddLesson = ({onLessonAdded}) => {
                             />
 
                             <label className="font-medium text-gray-800">Description</label>
-                            <textarea
-                                className="w-full !h-24 outline-none rounded bg-gray-100 p-2 mt-2 mb-3"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                            />
+                            <div className="mt-2 mb-3">
+                                <div 
+                                    ref={quillRef}
+                                    className="bg-white rounded"
+                                    style={{ minHeight: '150px' }}
+                                />
+                            </div>
                         </div>
 
                         <div className="bg-gray-200 px-4 py-3 text-right">
@@ -111,6 +165,29 @@ const AddLesson = ({onLessonAdded}) => {
                     </div>
                 </div>
             </div>
+
+            {/* Add Quill styles customization */}
+            <style jsx global>{`
+                .ql-toolbar {
+                    border-top-left-radius: 0.25rem;
+                    border-top-right-radius: 0.25rem;
+                    background-color: #f9fafb;
+                }
+                .ql-container {
+                    border-bottom-left-radius: 0.25rem;
+                    border-bottom-right-radius: 0.25rem;
+                    font-size: 14px;
+                }
+                .ql-editor {
+                    min-height: 120px;
+                    max-height: 300px;
+                    overflow-y: auto;
+                }
+                .ql-editor.ql-blank::before {
+                    font-style: normal;
+                    color: #9ca3af;
+                }
+            `}</style>
         </div>
     );
 };

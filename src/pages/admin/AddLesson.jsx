@@ -1,7 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
-import Quill from 'quill';
-import 'quill/dist/quill.snow.css';
+
+// Dynamically import Quill to avoid build issues
+let Quill;
+if (typeof window !== 'undefined') {
+    Quill = require('quill');
+    require('quill/dist/quill.snow.css');
+}
 
 const AddLesson = ({onLessonAdded}) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +17,7 @@ const AddLesson = ({onLessonAdded}) => {
     const quillInstance = useRef(null);
 
     useEffect(() => {
-        if (isOpen && quillRef.current && !quillInstance.current) {
+        if (isOpen && quillRef.current && !quillInstance.current && Quill) {
             // Initialize Quill editor
             quillInstance.current = new Quill(quillRef.current, {
                 theme: 'snow',
@@ -49,7 +54,7 @@ const AddLesson = ({onLessonAdded}) => {
                 quillInstance.current = null;
             }
         };
-    }, [isOpen]);
+    }, [isOpen, description]);
 
     const toggleModal = () => {
         if (isOpen && quillInstance.current) {
@@ -166,28 +171,30 @@ const AddLesson = ({onLessonAdded}) => {
                 </div>
             </div>
 
-            {/* Add Quill styles customization */}
-            <style jsx global>{`
-                .ql-toolbar {
-                    border-top-left-radius: 0.25rem;
-                    border-top-right-radius: 0.25rem;
-                    background-color: #f9fafb;
-                }
-                .ql-container {
-                    border-bottom-left-radius: 0.25rem;
-                    border-bottom-right-radius: 0.25rem;
-                    font-size: 14px;
-                }
-                .ql-editor {
-                    min-height: 120px;
-                    max-height: 300px;
-                    overflow-y: auto;
-                }
-                .ql-editor.ql-blank::before {
-                    font-style: normal;
-                    color: #9ca3af;
-                }
-            `}</style>
+            {/* Inline styles for Quill */}
+            {Quill && (
+                <style jsx global>{`
+                    .ql-toolbar {
+                        border-top-left-radius: 0.25rem;
+                        border-top-right-radius: 0.25rem;
+                        background-color: #f9fafb;
+                    }
+                    .ql-container {
+                        border-bottom-left-radius: 0.25rem;
+                        border-bottom-right-radius: 0.25rem;
+                        font-size: 14px;
+                    }
+                    .ql-editor {
+                        min-height: 120px;
+                        max-height: 300px;
+                        overflow-y: auto;
+                    }
+                    .ql-editor.ql-blank::before {
+                        font-style: normal;
+                        color: #9ca3af;
+                    }
+                `}</style>
+            )}
         </div>
     );
 };

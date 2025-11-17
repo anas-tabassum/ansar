@@ -15,8 +15,10 @@
     "flowbite-react": "^0.10.1",
     "lucide-react": "^0.475.0",
     "pagedone": "^1.2.2",
+    "quill": "^2.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-qr-code": "^2.0.12",
     "react-redux": "^9.1.2",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.26.1",
@@ -27,8 +29,7 @@
     "slick-carousel": "^1.8.1",
     "swiper": "^11.1.14",
     "validator": "^13.12.0",
-    "web-vitals": "^2.1.4",
-    "react-qr-code": "^2.0.12"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

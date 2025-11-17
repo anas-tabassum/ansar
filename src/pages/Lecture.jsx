@@ -1,77 +1,77 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import VideoPlayer from "../components/VideoPlayer";
-import VideoListItem from "../components/VideoListItem";
+import React from 'react';
 
-const Lecture = () => {
-    const [videos, setVideos] = useState([]);
-    const [activeVideo, setActiveVideo] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [autoPlay, isAutoPlay] = useState(false);
-
-    useEffect(() => {
-        const fetchVideos = async () => {
-            try {
-                setIsLoading(true);
-                const { data: { data } } = await axios.get(`${process.env.REACT_APP_BACKEND_HOST}lessons`);
-                setVideos(data);
-                if (data.length > 0 && !activeVideo) {
-                    setActiveVideo(data[0]);
-                }
-            } catch (error) {
-                console.error("Error fetching videos:", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchVideos();
-    }, []);
-
-    const handleVideoSelect = (video) => {
-        setActiveVideo(video);
-        isAutoPlay(true)
-    };
-
-    if (isLoading) {
-        return (
-            <div className="container mx-auto p-6 flex items-center justify-center min-h-screen">
-                <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-300 border-t-blue-600" />
-            </div>
-        );
-    }
-
+const VideoPlayer = ({ video, autoPlay }) => {
     return (
-        <div className="container mx-auto p-6">
-            <div className="flex flex-col lg:flex-row gap-6">
-                {/* Main video player */}
-                {videos.length > 0 && activeVideo && (
-                    <div className="lg:w-3/4">
-                        <VideoPlayer
-                            key={activeVideo._id} // Add key to force remount
-                            video={activeVideo}
-                            autoPlay={autoPlay}
-                        />
-                    </div>
-                )}
-
-                {/* Video list */}
-                <div className="lg:w-1/4 bg-white rounded-xl shadow-lg p-4">
-                    <h3 className="text-lg font-semibold mb-4">More Videos</h3>
-                    <div className="space-y-4">
-                        {videos.map((video) => (
-                            <VideoListItem
-                                key={video._id}
-                                video={video}
-                                isActive={activeVideo && video._id === activeVideo._id}
-                                onClick={handleVideoSelect}
-                            />
-                        ))}
-                    </div>
-                </div>
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+            {/* Video player section */}
+            <div className="aspect-video bg-black">
+                <iframe
+                    src={video.url}
+                    title={video.title}
+                    className="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    autoPlay={autoPlay}
+                />
             </div>
+            
+            {/* Video details section */}
+            <div className="p-6">
+                <h2 className="text-2xl font-bold mb-4">{video.title}</h2>
+                
+                {/* OLD WAY - if description was displayed as plain text */}
+                {/* <p className="text-gray-600">{video.description}</p> */}
+                
+                {/* NEW WAY - render HTML formatted description */}
+                <div 
+                    className="video-description text-gray-600"
+                    dangerouslySetInnerHTML={{ __html: video.description }}
+                />
+            </div>
+            
+            {/* Add styles for the formatted content */}
+            <style jsx>{`
+                .video-description h1 { font-size: 1.5em; font-weight: bold; margin: 0.5em 0; }
+                .video-description h2 { font-size: 1.3em; font-weight: bold; margin: 0.5em 0; }
+                .video-description h3 { font-size: 1.1em; font-weight: bold; margin: 0.5em 0; }
+                .video-description p { margin: 0.5em 0; }
+                .video-description ul, .video-description ol { 
+                    margin-left: 1.5em; 
+                    margin-top: 0.5em;
+                    margin-bottom: 0.5em;
+                }
+                .video-description li { margin: 0.25em 0; }
+                .video-description strong { font-weight: 600; }
+                .video-description em { font-style: italic; }
+                .video-description blockquote { 
+                    border-left: 4px solid #e5e7eb; 
+                    padding-left: 1em; 
+                    margin: 1em 0;
+                    color: #6b7280;
+                }
+                .video-description pre {
+                    background-color: #f3f4f6;
+                    padding: 1em;
+                    border-radius: 0.375rem;
+                    overflow-x: auto;
+                    margin: 0.5em 0;
+                }
+                .video-description code {
+                    background-color: #f3f4f6;
+                    padding: 0.2em 0.4em;
+                    border-radius: 0.25rem;
+                    font-family: monospace;
+                }
+                .video-description a {
+                    color: #2563eb;
+                    text-decoration: underline;
+                }
+                .video-description a:hover {
+                    color: #1d4ed8;
+                }
+            `}</style>
         </div>
     );
 };
 
-export default Lecture;
+export default VideoPlayer;

@@ -1,69 +1,29 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-
-// Dynamically import Quill to avoid build issues
-let Quill;
-if (typeof window !== 'undefined') {
-    Quill = require('quill');
-    require('quill/dist/quill.snow.css');
-}
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const AddLesson = ({onLessonAdded}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [title, setTitle] = useState('');
     const [url, setUrl] = useState('');
     const [description, setDescription] = useState('');
-    const quillRef = useRef(null);
-    const quillInstance = useRef(null);
 
-    useEffect(() => {
-        if (isOpen && quillRef.current && !quillInstance.current && Quill) {
-            // Initialize Quill editor
-            quillInstance.current = new Quill(quillRef.current, {
-                theme: 'snow',
-                modules: {
-                    toolbar: [
-                        [{ 'header': [1, 2, 3, false] }],
-                        ['bold', 'italic', 'underline', 'strike'],
-                        [{ 'color': [] }, { 'background': [] }],
-                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                        [{ 'align': [] }],
-                        ['blockquote', 'code-block'],
-                        ['link'],
-                        ['clean']
-                    ]
-                },
-                placeholder: 'Enter lesson description...'
-            });
+    const toggleModal = () => setIsOpen(!isOpen);
 
-            // Set initial content if editing
-            if (description) {
-                quillInstance.current.root.innerHTML = description;
-            }
-
-            // Update state when content changes
-            quillInstance.current.on('text-change', () => {
-                const html = quillInstance.current.root.innerHTML;
-                setDescription(html === '<p><br></p>' ? '' : html);
-            });
-        }
-
-        // Cleanup
-        return () => {
-            if (!isOpen && quillInstance.current) {
-                quillInstance.current = null;
-            }
-        };
-    }, [isOpen, description]);
-
-    const toggleModal = () => {
-        if (isOpen && quillInstance.current) {
-            quillInstance.current = null;
-        }
-        setIsOpen(!isOpen);
+    const modules = {
+        toolbar: [
+            [{ 'header': [1, 2, 3, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'align': [] }],
+            ['blockquote', 'code-block'],
+            ['link'],
+            ['clean']
+        ]
     };
 
-    // Create a new lesson
     const handleCreate = async () => {
         try {
             try {
@@ -87,9 +47,6 @@ const AddLesson = ({onLessonAdded}) => {
             setTitle('');
             setUrl('');
             setDescription('');
-            if (quillInstance.current) {
-                quillInstance.current.setText('');
-            }
             toggleModal();
             onLessonAdded();
         } catch (err) {
@@ -110,15 +67,12 @@ const AddLesson = ({onLessonAdded}) => {
 
             <div className={`fixed z-50 overflow-y-auto top-0 w-full left-0 ${!isOpen ? 'hidden' : ''}`}>
                 <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                    {/* Overlay */}
                     <div className="fixed inset-0 transition-opacity">
                         <div className="absolute inset-0 bg-gray-900 opacity-75" />
                     </div>
 
-                    {/* Centering trick */}
                     <span className="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
 
-                    {/* Modal */}
                     <div
                         className="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
                         role="dialog"
@@ -142,11 +96,14 @@ const AddLesson = ({onLessonAdded}) => {
                             />
 
                             <label className="font-medium text-gray-800">Description</label>
-                            <div className="mt-2 mb-3">
-                                <div 
-                                    ref={quillRef}
-                                    className="bg-white rounded"
-                                    style={{ minHeight: '150px' }}
+                            <div className="mt-2 mb-3" style={{ backgroundColor: 'white' }}>
+                                <ReactQuill 
+                                    theme="snow"
+                                    value={description}
+                                    onChange={setDescription}
+                                    modules={modules}
+                                    placeholder="Enter lesson description..."
+                                    style={{ height: '150px', marginBottom: '50px' }}
                                 />
                             </div>
                         </div>
@@ -170,31 +127,6 @@ const AddLesson = ({onLessonAdded}) => {
                     </div>
                 </div>
             </div>
-
-            {/* Inline styles for Quill */}
-            {Quill && (
-                <style jsx global>{`
-                    .ql-toolbar {
-                        border-top-left-radius: 0.25rem;
-                        border-top-right-radius: 0.25rem;
-                        background-color: #f9fafb;
-                    }
-                    .ql-container {
-                        border-bottom-left-radius: 0.25rem;
-                        border-bottom-right-radius: 0.25rem;
-                        font-size: 14px;
-                    }
-                    .ql-editor {
-                        min-height: 120px;
-                        max-height: 300px;
-                        overflow-y: auto;
-                    }
-                    .ql-editor.ql-blank::before {
-                        font-style: normal;
-                        color: #9ca3af;
-                    }
-                `}</style>
-            )}
         </div>
     );
 };

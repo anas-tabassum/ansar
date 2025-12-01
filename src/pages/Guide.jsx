@@ -17,6 +17,8 @@ const Guide = () => {
 
       <section id="hajj_guide">
         <p className="text-justify text-xl custom_font_raleway">
+          <h2 className="text-3xl">Vous pouvez télécharger Ask Ansar en cliquant sur le lien ci-dessous.</h2>
+          <h2 className="text-3xl">https://ansarv1.s3.us-east-2.amazonaws.com/Ansar_apps/Ask+Ansar_android.apk</h2>
           <h2 className="text-4xl">Qu'est-ce que le Hajj</h2>
           <p>
             Le pèlerinage musulman à La Mecque, qui a lieu au dernier mois de

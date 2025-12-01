@@ -18,7 +18,17 @@ const Guide = () => {
       <section id="hajj_guide">
         <p className="text-justify text-xl custom_font_raleway">
           <h2 className="text-3xl">Vous pouvez télécharger Ask Ansar en cliquant sur le lien ci-dessous.</h2>
-          <h2 className="text-3xl">https://ansarv1.s3.us-east-2.amazonaws.com/Ansar_apps/Ask+Ansar_android.apk</h2>
+          
+          <div className="my-4">
+            <a 
+              href="https://ansarv1.s3.us-east-2.amazonaws.com/Ansar_apps/Ask+Ansar_android.apk"
+              className="inline-block px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors duration-200"
+              download
+            >
+              Télécharger Ici
+            </a>
+          </div>
+        
           <h2 className="text-4xl">Qu'est-ce que le Hajj</h2>
           <p>
             Le pèlerinage musulman à La Mecque, qui a lieu au dernier mois de
@@ -33,26 +43,26 @@ const Guide = () => {
             pour les musulmans, et un devoir religieux obligatoire pour les
             musulmans, qui doit être accompli au moins une fois dans leur vie
             par tous les musulmans adultes qui sont physiquement et
-            financièrement capables d’entreprendre le voyage et de subvenir aux
+            financièrement capables d'entreprendre le voyage et de subvenir aux
             besoins de leur famille pendant leur absence. C'est l'un des cinq
             piliers de l'Islam, aux côtés de la Shahada, de la Salat, de la
             Zakat et du Sawm. Le Hajj est le plus grand rassemblement annuel de
-            personnes au monde. L’état de capacité physique et financière
-            d’accomplir le Hajj est appelé “istita’ah”, et un musulman qui
-            remplit cette condition est appelé “mustati”. Le Hajj est une
+            personnes au monde. L'état de capacité physique et financière
+            d'accomplir le Hajj est appelé "istita'ah", et un musulman qui
+            remplit cette condition est appelé "mustati". Le Hajj est une
             démonstration de la solidarité du peuple musulman et de sa
-            soumission à Dieu (Allah). Le mot Hajj signifie « avoir l’intention
-            d’un voyage », ce qui évoque à la fois l’acte extérieur d’un voyage
-            et l’acte intérieur des intentions.
+            soumission à Dieu (Allah). Le mot Hajj signifie « avoir l'intention
+            d'un voyage », ce qui évoque à la fois l'acte extérieur d'un voyage
+            et l'acte intérieur des intentions.
           </p>
           <br />
 
           <p>
             Le pèlerinage a lieu du 8 au 12 (ou dans certains cas le 13) de
-            “Dhou al-Hijja”, le dernier mois du calendrier islamique. Comme le
-            calendrier islamique est lunaire et que l’année islamique est
-            environ onze jours plus courts que l’année grégorienne, la date du
-            Hajj dans le calendrier grégorien change chaque année. “Ihram” est
+            "Dhou al-Hijja", le dernier mois du calendrier islamique. Comme le
+            calendrier islamique est lunaire et que l'année islamique est
+            environ onze jours plus courts que l'année grégorienne, la date du
+            Hajj dans le calendrier grégorien change chaque année. "Ihram" est
             le nom donné à l'état spirituel particulier dans lequel les pèlerins
             portent deux draps blancs de tissu sans couture et s'abstiennent de
             certaines actions.
@@ -70,22 +80,22 @@ const Guide = () => {
             le tour de la Kaaba (la structure cubique) dans le sens inverse des
             aiguilles d'une montre (le bâtiment vers lequel les musulmans se
             tournent pour prier), fait des allers-retours entre les collines
-            d’Al-Safa et d’Al-Marwah, boit de l'eau du puits Zamzam, se rend
+            d'Al-Safa et d'Al-Marwah, boit de l'eau du puits Zamzam, se rend
             dans les plaines du mont Arafat pour y veiller, passe une nuit dans
             la plaine de Muzdalifa, et pratique la lapidation symbolique du
             diable en jetant des pierres sur trois piliers. Les pèlerins se
             rasent ensuite la tête, accomplissent un rituel de sacrifice
-            d'animaux et célèbrent le festival mondial de trois jours de l'“Aïd
-            al-Adha”.
+            d'animaux et célèbrent le festival mondial de trois jours de l'"Aïd
+            al-Adha".
           </p>
           <br />
 
           <p>
             Les pèlerins peuvent également se rendre à La Mecque pour accomplir
-            les rituels à d'autres moments de l'année. C’est ce qu’on appelle
-            parfois le « petit pèlerinage, ou “Oumra”. Cependant, même s’ils
-            choisissent d’accomplir la Oumra, ils sont toujours obligés
-            d’accomplir le Hajj à un autre moment de leur vie s’ils en ont les
+            les rituels à d'autres moments de l'année. C'est ce qu'on appelle
+            parfois le « petit pèlerinage, ou "Oumra". Cependant, même s'ils
+            choisissent d'accomplir la Oumra, ils sont toujours obligés
+            d'accomplir le Hajj à un autre moment de leur vie s'ils en ont les
             moyens, car la Oumra ne remplace pas le Hajj.
           </p>
           <br />

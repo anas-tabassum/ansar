@@ -1,17 +1,25 @@
 import React from 'react';
 
 const VideoPlayer = ({ video, autoPlay }) => {
+    // Modify the video URL to include autoplay parameter
+    const getVideoUrl = () => {
+        if (!autoPlay) return video.url;
+        
+        const url = new URL(video.url);
+        url.searchParams.set('autoplay', '1');
+        return url.toString();
+    };
+
     return (
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
             {/* Video player section */}
             <div className="aspect-video bg-black">
                 <iframe
-                    src={video.url}
+                    src={getVideoUrl()}
                     title={video.title}
                     className="w-full h-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                    autoPlay={autoPlay}
                 />
             </div>
             

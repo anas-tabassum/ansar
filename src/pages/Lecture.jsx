@@ -1,55 +1,76 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import VideoPlayer from '../components/VideoPlayer';
 
-const VideoPlayer = ({ video, autoPlay }) => {
-    // Guard clause - handle missing video data
-    if (!video) {
-        return (
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden p-6">
-                <p className="text-gray-500">Video not available</p>
-            </div>
-        );
+const Lecture = () => {
+    const [lessons, setLessons] = useState([]);
+    const [selectedLesson, setSelectedLesson] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        const fetchLessons = async () => {
+            try {
+                const { data: { data } } = await axios.get(
+                    `${process.env.REACT_APP_BACKEND_HOST}lessons`
+                );
+                setLessons(data);
+                if (data && data.length > 0) {
+                    setSelectedLesson(data[0]);
+                }
+            } catch (err) {
+                setError('Failed to load lessons');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchLessons();
+    }, []);
+
+    if (loading) {
+        return <div className="p-6 text-center">Loading lessons...</div>;
     }
 
-    const getVideoUrl = () => {
-        if (!video.url) return '';
-        if (!autoPlay) return video.url;
-        
-        try {
-            const url = new URL(video.url);
-            url.searchParams.set('autoplay', '1');
-            return url.toString();
-        } catch (e) {
-            // Handle invalid URLs gracefully
-            return video.url;
-        }
-    };
+    if (error) {
+        return <div className="p-6 text-center text-red-500">{error}</div>;
+    }
+
+    if (lessons.length === 0) {
+        return <div className="p-6 text-center text-gray-500">No lessons available</div>;
+    }
 
     return (
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="aspect-video bg-black">
-                <iframe
-                    src={getVideoUrl()}
-                    title={video.title || 'Video'}
-                    className="w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                />
-            </div>
-            
-            <div className="p-6">
-                <h2 className="text-2xl font-bold mb-4">{video.title || 'Untitled'}</h2>
-                
-                {video.description && (
-                    <div 
-                        className="video-description text-gray-600"
-                        dangerouslySetInnerHTML={{ __html: video.description }}
+        <div className="container mx-auto px-4 py-8">
+            <div className="flex flex-col lg:flex-row gap-6">
+                <div className="lg:w-2/3">
+                    <VideoPlayer 
+                        video={selectedLesson} 
+                        autoPlay={false} 
                     />
-                )}
+                </div>
+
+                <div className="lg:w-1/3">
+                    <h3 className="text-lg font-semibold mb-4">All Lessons</h3>
+                    <div className="space-y-2 max-h-[600px] overflow-y-auto">
+                        {lessons.map((lesson) => (
+                            <button
+                                key={lesson._id}
+                                onClick={() => setSelectedLesson(lesson)}
+                                className={`w-full text-left p-4 rounded-lg transition-colors ${
+                                    selectedLesson?._id === lesson._id
+                                        ? 'bg-blue-100 border-2 border-blue-500'
+                                        : 'bg-white border border-gray-200 hover:bg-gray-50'
+                                }`}
+                            >
+                                <p className="font-medium truncate">{lesson.title}</p>
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </div>
-            
-            {/* styles unchanged */}
         </div>
     );
 };
 
-export default VideoPlayer;
+export default Lecture;

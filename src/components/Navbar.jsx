@@ -48,7 +48,7 @@ const Navbar = () => {
             className="flex items-center space-x-3 rtl:space-x-reverse"
             >
           <img src={logo} className="w-40" alt="Logo" />
-         </NavLink>NavLink>
+         </NavLink>
         
          <button
             data-collapse-toggle="navbar-default"
@@ -58,7 +58,7 @@ const Navbar = () => {
             aria-expanded={navbarOpen ? "true" : "false"}
             onClick={() => setNavbarOpen(!navbarOpen)}
             >
-          <span className="sr-only">Open main menu</span>span>
+          <span className="sr-only">Open main menu</span>
           <svg
              className="w-5 h-5"
              aria-hidden="true"
@@ -73,8 +73,8 @@ const Navbar = () => {
               strokeWidth="2"
               d="M1 1h15M1 7h15M1 13h15"
               />
-          </svg>svg>
-         </button>button>
+          </svg>
+         </button>
         
          <div
             className={`${navbarOpen ? "block" : "hidden"} w-full md:block md:w-auto`}
@@ -92,8 +92,8 @@ const Navbar = () => {
                }
                >
              Accueil
-            </NavLink>NavLink>
-           </li>li>
+            </NavLink>
+           </li>
           
             {/* Services for desktop */}
            <li
@@ -118,7 +118,7 @@ const Navbar = () => {
                 strokeWidth="2"
                 d="m1 1 4 4 4-4"
                 />
-            </svg>svg>
+            </svg>
             <div
                id="dropdownDelay"
                style={{ marginLeft: "-3rem" }}
@@ -135,8 +135,8 @@ const Navbar = () => {
                   className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                 Réserver un billet
-               </NavLink>NavLink>
-              </li>li>
+               </NavLink>
+              </li>
               <li>
                <NavLink
                   to="umra"
@@ -144,8 +144,8 @@ const Navbar = () => {
                   className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                 Réserver une Omra
-               </NavLink>NavLink>
-              </li>li>
+               </NavLink>
+              </li>
               <li>
                <NavLink
                   to="hajj"
@@ -153,11 +153,11 @@ const Navbar = () => {
                   className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                 Réserver un Hajj
-               </NavLink>NavLink>
-              </li>li>
-             </ul>ul>
-            </div>div>
-           </li>li>
+               </NavLink>
+              </li>
+             </ul>
+            </div>
+           </li>
           
             {/* Services for Mobile and Tablet */}
            <CustomDropdown onSelect={handleNavigation} />
@@ -173,8 +173,8 @@ const Navbar = () => {
                }
                >
              Guide
-            </NavLink>NavLink>
-           </li>li>
+            </NavLink>
+           </li>
           
            <li>
             <NavLink
@@ -187,8 +187,8 @@ const Navbar = () => {
                }
                >
              Galerie
-            </NavLink>NavLink>
-           </li>li>
+            </NavLink>
+           </li>
           
             {/* Leçons with Years Dropdown */}
            <li
@@ -207,7 +207,7 @@ const Navbar = () => {
                }
                >
              Leçons
-            </NavLink>NavLink>
+            </NavLink>
              {years.length > 0 && (
                  <svg
                     className="w-2.5 h-2.5 ms-3 mt-2"
@@ -224,7 +224,7 @@ const Navbar = () => {
                      strokeWidth="2"
                      d="m1 1 4 4 4-4"
                      />
-                 </svg>svg>
+                 </svg>
             )}
            
              {years.length > 0 && (
@@ -249,13 +249,13 @@ const Navbar = () => {
                             className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                             >
                            {year}
-                         </a>a>
-                        </li>li>
+                         </a>
+                        </li>
                         ))}
-                  </ul>ul>
-                 </div>div>
+                  </ul>
+                 </div>
             )}
-           </li>li>
+           </li>
           
             {/* Mobile Leçons */}
            <li>
@@ -269,8 +269,8 @@ const Navbar = () => {
                }
                >
              Leçons
-            </NavLink>NavLink>
-           </li>li>
+            </NavLink>
+           </li>
           
            <li>
             <NavLink
@@ -283,8 +283,8 @@ const Navbar = () => {
                }
                >
              À propos
-            </NavLink>NavLink>
-           </li>li>
+            </NavLink>
+           </li>
           
            <li>
             <NavLink
@@ -297,14 +297,14 @@ const Navbar = () => {
                }
                >
              Contact
-            </NavLink>NavLink>
-           </li>li>
-          </ul>ul>
-         </div>div>
-        </div>div>
-       </nav>nav>
-      </div>div>
+            </NavLink>
+           </li>
+          </ul>
+         </div>
+        </div>
+       </nav>
+      </div>
       );
 };
 
-export default Navbar;</div>
+export default Navbar;

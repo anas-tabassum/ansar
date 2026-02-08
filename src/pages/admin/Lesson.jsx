@@ -75,11 +75,9 @@ const Lesson = () => {
                                             title: lesson.title,
                                             url: lesson.url,
                                             description: lesson.description,
-                                            year: lesson.year
-                              }, {
+                                            
                                             headers: { Authorization: `Bearer ${token}` }
                               });
-                              alert("Lesson updated successfully!");
                               refreshData();
                   } catch (err) {
                               alert("Failed to update lesson.");

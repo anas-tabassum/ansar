@@ -90,7 +90,7 @@ const Lesson = () => {
 
       return (
             <div className="container mx-auto max-w-3xl px-4">
-             <h1 className="text-2xl font-semibold mb-6">Manage Lessons</h1>h1>
+             <h1 className="text-2xl font-semibold mb-6">Manage Lessons</h1>
              
                  {/* Add New Year Button Section */}
              <div className="mb-6">
@@ -99,13 +99,13 @@ const Lesson = () => {
                     onClick={() => setShowYearModal(true)}
                     >
                Add New Year
-              </button>button>
+              </button>
               
                   {/* Year Modal */}
                   {showYearModal && (
                   <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                    <div className="bg-white rounded-lg p-6 max-w-md w-full">
-                    <h2 className="text-xl font-semibold mb-4">Add New Year</h2>h2>
+                    <h2 className="text-xl font-semibold mb-4">Add New Year</h2>
                     <input
                           type="text"
                           value={yearInput}
@@ -123,16 +123,16 @@ const Lesson = () => {
                            }}
                            >
                       Cancel
-                     </button>button>
+                     </button>
                      <button
                            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md"
                            onClick={handleAddYear}
                            >
                       Create
-                     </button>button>
-                    </div>div>
-                   </div>div>
-                  </div>div>
+                     </button>
+                    </div>
+                   </div>
+                  </div>
               )}
               
                   {/* Year Links Display */}
@@ -148,21 +148,21 @@ const Lesson = () => {
                         className="px-3 py-1 bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition"
                         >
                        {year}
-                  </a>a>
+                  </a>
                   ))}
-              </div>div>
-             </div>div>
+              </div>
+             </div>
              
              <AddLesson onLessonAdded={refreshData} />
                  {loading ? (
-                  <p>Loading...</p>p>
+                  <p>Loading...</p>
                   ) : error ? (
-                  <p className="text-red-500">{error}</p>p>
+                  <p className="text-red-500">{error}</p>
                   ) : (
                   lessons.map((lesson) => (
                         <div key={lesson._id} className="bg-white rounded-md shadow-md p-6 mb-6">
                          <div className="mb-4">
-                          <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>label>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
                           <input
                                 className="w-full p-2 border border-gray-300 rounded-md focus:border-blue-600 focus:outline-none"
                                 placeholder="Title"
@@ -171,9 +171,9 @@ const Lesson = () => {
                                       lessons.map(l => l._id === lesson._id ? { ...l, title: e.target.value } : l)
                                       )}
                                 />
-                         </div>div>
+                         </div>
                          <div className="mb-4">
-                          <label className="block text-sm font-medium text-gray-700 mb-1">URL</label>label>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">URL</label>
                           <input
                                 className="w-full p-2 border border-gray-300 rounded-md focus:border-blue-600 focus:outline-none"
                                 placeholder="URL"
@@ -182,9 +182,9 @@ const Lesson = () => {
                                       lessons.map(l => l._id === lesson._id ? { ...l, url: e.target.value } : l)
                                       )}
                                 />
-                         </div>div>
+                         </div>
                          <div className="mb-4">
-                          <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>label>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                           <ReactQuill
                                 theme="snow"
                                 value={lesson.description || ''}
@@ -194,26 +194,26 @@ const Lesson = () => {
                                 modules={modules}
                                 style={{ backgroundColor: 'white' }}
                                 />
-                         </div>div>
+                         </div>
                          <div className="flex mt-12">
                           <button
                                 className="px-4 py-2 bg-primary-btn hover:bg-primary-btn-hover text-white rounded-md"
                                 onClick={() => handleUpdate(lesson)}
                                 >
                            Update
-                          </button>button>
+                          </button>
                           <button
                                 className="px-4 py-2 bg-red-700 hover:bg-red-800 text-white rounded-md ml-4"
                                 onClick={() => handleDelete(lesson._id)}
                                 >
                            Delete
-                          </button>button>
-                         </div>div>
-                        </div>div>
+                          </button>
+                         </div>
+                        </div>
                         ))
                   )}
-            </div>div>
+            </div>
             );
 };
 
-export default Lesson;</div>
+export default Lesson;

@@ -66,22 +66,22 @@ const AddLesson = ({onLessonAdded}) => {
                                                                         onClick={toggleModal}
                                                                     >
                                                                     Add new lesson
-                                                </button>button>
-                                </div>div>
+                                                </button>
+                                </div>
                     
                                 <div className={`fixed z-50 overflow-y-auto top-0 w-full left-0 ${!isOpen ? 'hidden' : ''}`}>
                                                 <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                                                                     <div className="fixed inset-0 transition-opacity">
                                                                                             <div className="absolute inset-0 bg-gray-900 opacity-75" />
-                                                                    </div>div>
-                                                                    <span className="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>span>
+                                                                    </div>
+                                                                    <span className="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
                                                                     <div
                                                                                                 className="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
                                                                                                 role="dialog"
                                                                                                 aria-modal="true"
                                                                                             >
                                                                                             <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                                                                                                                        <label className="font-medium text-gray-800">Title</label>label>
+                                                                                                                        <label className="font-medium text-gray-800">Title</label>
                                                                                                                         <input
                                                                                                                                                             type="text"
                                                                                                                                                             className="w-full outline-none rounded bg-gray-100 p-2 mt-2 mb-3"
@@ -89,20 +89,20 @@ const AddLesson = ({onLessonAdded}) => {
                                                                                                                                                             onChange={(e) => setTitle(e.target.value)}
                                                                                                                                                         />
                                                                                             
-                                                                                                                        <label className="font-medium text-gray-800">Year <span className="text-red-500">*</span>span></label>label>
+                                                                                                                        <label className="font-medium text-gray-800">Year <span className="text-red-500">*</span></label>
                                                                                                                         <select
                                                                                                                                                             className="w-full outline-none rounded bg-gray-100 p-2 mt-2 mb-3"
                                                                                                                                                             value={year}
                                                                                                                                                             onChange={(e) => setYear(e.target.value)}
                                                                                                                                                             required
                                                                                                                                                         >
-                                                                                                                                                        <option value="">-- Select Year --</option>option>
+                                                                                                                                                        <option value="">-- Select Year --</option>
                                                                                                                             {years.map((y) => (
-                                                                                                                                                                                                <option key={y} value={y}>{y}</option>option>
+                                                                                                                                                                                                <option key={y} value={y}>{y}</option>
                                                                                                                                                                                             ))}
-                                                                                                                            </select>select>
+                                                                                                                            </select>
                                                                                             
-                                                                                                                        <label className="font-medium text-gray-800">Url</label>label>
+                                                                                                                        <label className="font-medium text-gray-800">Url</label>
                                                                                                                         <input
                                                                                                                                                             type="url"
                                                                                                                                                             className="w-full outline-none rounded bg-gray-100 p-2 mt-2 mb-3"
@@ -110,7 +110,7 @@ const AddLesson = ({onLessonAdded}) => {
                                                                                                                                                             onChange={(e) => setUrl(e.target.value)}
                                                                                                                                                         />
                                                                                             
-                                                                                                                        <label className="font-medium text-gray-800">Description</label>label>
+                                                                                                                        <label className="font-medium text-gray-800">Description</label>
                                                                                                                         <div className="mt-2 mb-3" style={{ backgroundColor: 'white' }}>
                                                                                                                                                         <ReactQuill
                                                                                                                                                                                                 theme="snow"
@@ -120,8 +120,8 @@ const AddLesson = ({onLessonAdded}) => {
                                                                                                                                                                                                 placeholder="Enter lesson description..."
                                                                                                                                                                                                 style={{ height: '150px', marginBottom: '50px' }}
                                                                                                                                                                                             />
-                                                                                                                            </div>div>
-                                                                                                </div>div>
+                                                                                                                            </div>
+                                                                                                </div>
                                                                     
                                                                                             <div className="bg-gray-200 px-4 py-3 text-right">
                                                                                                                         <button
@@ -129,21 +129,21 @@ const AddLesson = ({onLessonAdded}) => {
                                                                                                                                                             className="py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-700 mr-2"
                                                                                                                                                             onClick={toggleModal}
                                                                                                                                                         >
-                                                                                                                                                        <i className="fas fa-times"></i>i> Cancel
-                                                                                                                            </button>button>
+                                                                                                                                                        <i className="fas fa-times"></i> Cancel
+                                                                                                                            </button>
                                                                                                                         <button
                                                                                                                                                             type="button"
                                                                                                                                                             className="py-2 px-4 bg-primary-btn hover:bg-primary-btn-hover text-white rounded font-medium mr-2 transition duration-500"
                                                                                                                                                             onClick={handleCreate}
                                                                                                                                                         >
-                                                                                                                                                        <i className="fas fa-plus"></i>i> Create
-                                                                                                                            </button>button>
-                                                                                                </div>div>
-                                                                    </div>div>
-                                                </div>div>
-                                </div>div>
-                    </div>div>
+                                                                                                                                                        <i className="fas fa-plus"></i> Create
+                                                                                                                            </button>
+                                                                                                </div>
+                                                                    </div>
+                                                </div>
+                                </div>
+                    </div>
                 );
 };
 
-export default AddLesson;</div>
+export default AddLesson;

@@ -108,8 +108,7 @@ const Lesson = () => {
         return (
                   <div className="container mx-auto max-w-3xl px-4">
                         <h1 className="text-2xl font-semibold mb-6">Manage Lessons</h1>
-   setYearInput               
-                        {/* Add New Year Button Section */}
+   {/* Add New Year Button Section */}
                         <div className="mb-6">
                                 <button
                                                 className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md mb-4"

@@ -75,6 +75,7 @@ const Lesson = () => {
                                             title: lesson.title,
                                             url: lesson.url,
                                             description: lesson.description,
+                                                                          year: lesson.year || selectedYear,
                               }, {
                                             headers: { Authorization: `Bearer ${token}` }
                               });
@@ -125,7 +126,7 @@ const Lesson = () => {
                                                             <input
                                                                                   type="text"
                                                                                   value={yearInput}
-                                                                                  onChange={(e) => setYearInput(e.target.value)}
+                                                                                  onChange={(e) => setYearhInput(e.target.value)}
                                                                                   placeholder="Enter year (e.g., 2025)"
                                                                                   className="w-full p-2 border border-gray-300 rounded-md focus:border-blue-600 focus:outline-none mb-4"
                                                                                   onKeyPress={(e) => e.key === 'Enter' && handleAddYear()}

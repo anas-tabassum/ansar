@@ -28,10 +28,6 @@ const AddLesson = ({onLessonAdded}) => {
         };
 
         const handleCreate = async () => {
-                    if (!year) {
-                                    alert('Please select a year.');
-                                    return;
-                    }
                     try {
                                     try {
                                                         new URL(url);
@@ -43,7 +39,7 @@ const AddLesson = ({onLessonAdded}) => {
                         const token = sessionStorage.getItem('token');
                                     await axios.post(
                                                         `${process.env.REACT_APP_BACKEND_HOST}admin/lesson-add`,
-                                        { title, url, description, year },
+                                        { title, url, description, },
                                         { headers: { Authorization: `Bearer ${token}` } }
                                                     );
 

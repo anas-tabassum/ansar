@@ -108,7 +108,7 @@ const Lesson = () => {
         return (
                   <div className="container mx-auto max-w-3xl px-4">
                         <h1 className="text-2xl font-semibold mb-6">Manage Lessons</h1>
-                  
+   setYearInput               
                         {/* Add New Year Button Section */}
                         <div className="mb-6">
                                 <button
@@ -126,7 +126,7 @@ const Lesson = () => {
                                                             <input
                                                                                   type="text"
                                                                                   value={yearInput}
-                                                                                  onChange={(e) => setYearhInput(e.target.value)}
+                                                                                  onChange={(e) => setYearInput(e.target.value)}
                                                                                   placeholder="Enter year (e.g., 2025)"
                                                                                   className="w-full p-2 border border-gray-300 rounded-md focus:border-blue-600 focus:outline-none mb-4"
                                                                                   onKeyPress={(e) => e.key === 'Enter' && handleAddYear()}

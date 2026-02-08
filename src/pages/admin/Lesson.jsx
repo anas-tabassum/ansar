@@ -75,7 +75,7 @@ const Lesson = () => {
                                             title: lesson.title,
                                             url: lesson.url,
                                             description: lesson.description,
-                                            
+                              }, {
                                             headers: { Authorization: `Bearer ${token}` }
                               });
                               refreshData();

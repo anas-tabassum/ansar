@@ -5,16 +5,20 @@ import { useEffect } from "react";
 import MyRoutes from "./routes/MyRoutes";
 import "flowbite";
 import "./App.css";
+import { YearProvider } from "./store/YearContext";
 
 const App = () => {
-  useEffect(() => {
-    initFlowbite();
-  }, []);
-  return (
-    <div>
-      <MyRoutes />
-    </div>
-  );
+    useEffect(() => {
+          initFlowbite();
+    }, []);
+
+    return (
+          <YearProvider>
+            <div>
+              <MyRoutes />
+      </div>
+      </YearProvider>
+    );
 };
 
 export default App;

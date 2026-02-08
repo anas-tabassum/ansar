@@ -39,7 +39,7 @@ const AddLesson = ({onLessonAdded}) => {
                         const token = sessionStorage.getItem('token');
                                     await axios.post(
                                                         `${process.env.REACT_APP_BACKEND_HOST}admin/lesson-add`,
-                                        { title, url, description, },
+                                        { title, url, description, year },
                                         { headers: { Authorization: `Bearer ${token}` } }
                                                     );
 

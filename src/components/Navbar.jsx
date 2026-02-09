@@ -230,7 +230,7 @@ const Navbar = () => {
              {years.length > 0 && (
                  <div
                     id="lessonsDropdown"
-                    style={{ marginLeft: "-3rem" }}
+                    style={{ left: "0" }}
                     className={`absolute z-10 ${lessonsDropdown ? "block" : "hidden"} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 top-full`}
                     >
                   <ul

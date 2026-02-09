@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import CustomDropdown from "./CustomDropdown";
 import { useYearContext } from "../store/YearContext";
+// Mobile Leçons dropdown v2
 
 const Navbar = () => {
    const [servicesDropdown, setServicesDropdown] = useState(false);

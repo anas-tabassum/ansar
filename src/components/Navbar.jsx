@@ -8,6 +8,7 @@ const Navbar = () => {
    const [servicesDropdown, setServicesDropdown] = useState(false);
    const [navbarOpen, setNavbarOpen] = useState(false);
    const [lessonsDropdown, setLessonsDropdown] = useState(false);
+   const [mobileLessonsOpen, setMobileLessonsOpen] = useState(false);
    const { years } = useYearContext();
 
    const hideDropDown = () => {
@@ -258,18 +259,68 @@ const Navbar = () => {
            </li>
           
             {/* Mobile Leçons */}
-           <li>
-            <NavLink
-               to="/lesson"
-               onClick={hideDropDown}
-               className={({ isActive }) =>
+           <li className="md:hidden">
+            {years.length > 0 ? (
+              <div>
+                <button
+                  type="button"
+                  onClick={() => setMobileLessonsOpen(!mobileLessonsOpen)}
+                  className="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                >
+                  Leçons
+                  <svg
+                    className={`w-2.5 h-2.5 ms-2 transition-transform ${mobileLessonsOpen ? 'rotate-180' : ''}`}
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                  >
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                  </svg>
+                </button>
+                {mobileLessonsOpen && (
+                  <ul className="pl-4 py-1">
+                    <li>
+                      <NavLink
+                        to="/lesson"
+                        onClick={hideDropDown}
+                        className="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                      >
+                        Toutes les leçons
+                      </NavLink>
+                    </li>
+                    {years.map((year) => (
+                      <li key={year}>
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            navigate(`/lesson/${year}`);
+                            hideDropDown();
+                            setMobileLessonsOpen(false);
+                          }}
+                          className="block py-2 px-3 text-gray-700 rounded hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                        >
+                          {year}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ) : (
+              <NavLink
+                to="/lesson"
+                onClick={hideDropDown}
+                className={({ isActive }) =>
                   isActive
-                  ? "block md:hidden py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
-                  : "block md:hidden py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-               }
-               >
-             Leçons
-            </NavLink>
+                  ? "block py-2 px-3 text-white bg-blue-700 rounded"
+                  : "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                }
+              >
+                Leçons
+              </NavLink>
+            )}
            </li>
           
            <li>

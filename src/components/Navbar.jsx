@@ -8,7 +8,7 @@ const Navbar = () => {
    const [servicesDropdown, setServicesDropdown] = useState(false);
    const [navbarOpen, setNavbarOpen] = useState(false);
    const [lessonsDropdown, setLessonsDropdown] = useState(false);
-   const { years } = useYearContext();
+   const { years } = useYearContext();h
 
    const hideDropDown = () => {
       setNavbarOpen(false);
@@ -243,11 +243,12 @@ const Navbar = () => {
                             href="#"
                             onClick={(e) => {
                                e.preventDefault();
-                               navigate("/lesson");
+                                                       navigate(`/lesson/${year}`);
                                hideDropDown();
+                                                       hideLessonsDropDown();
                             }}
                             className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            >
+                            >h
                            {year}
                          </a>
                         </li>

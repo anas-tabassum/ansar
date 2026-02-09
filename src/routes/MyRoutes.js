@@ -8,7 +8,7 @@ import About from "../pages/About";
 import Guide from "../pages/Guide";
 import Hajj from "../pages/Hajj";
 import Umra from "../pages/Umra";
-import Ticket from "../pages/Ticket";
+import Ticket from "../pages/Ticket";h
 import HajjBooking from "../pages/HajjBooking";
 import UmraBooking from "../pages/UmraBooking";
 import HajjPackages from "../pages/HajjPackages";
@@ -47,6 +47,7 @@ const MyRoutes = () => {
             <Route path="hajj" element={<AdminHajj />} />
           </Route>
            <Route path="/lesson" element={<Lecture />} />
+            <Route path="/lesson/:year" element={<Lecture />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/ticket" element={<Ticket />} />

@@ -8,7 +8,7 @@ const Navbar = () => {
    const [servicesDropdown, setServicesDropdown] = useState(false);
    const [navbarOpen, setNavbarOpen] = useState(false);
    const [lessonsDropdown, setLessonsDropdown] = useState(false);
-   const { years } = useYearContext();h
+   const { years } = useYearContext();
 
    const hideDropDown = () => {
       setNavbarOpen(false);

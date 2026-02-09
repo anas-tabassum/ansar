@@ -8,7 +8,7 @@ import About from "../pages/About";
 import Guide from "../pages/Guide";
 import Hajj from "../pages/Hajj";
 import Umra from "../pages/Umra";
-import Ticket from "../pages/Ticket";h
+import Ticket from "../pages/Ticket";
 import HajjBooking from "../pages/HajjBooking";
 import UmraBooking from "../pages/UmraBooking";
 import HajjPackages from "../pages/HajjPackages";

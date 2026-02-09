@@ -230,7 +230,7 @@ const Navbar = () => {
              {years.length > 0 && (
                  <div
                     id="lessonsDropdown"
-                    className={`absolute z-10 left-0 ${lessonsDropdown ? "block" : "hidden"} bg-white divide-y divide-gray-100 rounded-lg shadow w-24 dark:bg-gray-700 top-full`}
+                    className={`absolute z-10 left-1/2 -translate-x-1/2 ${lessonsDropdown ? "block" : "hidden"} bg-white divide-y divide-gray-100 rounded-lg shadow min-w-[5rem] dark:bg-gray-700 top-full`}
                     >
                   <ul
                      className="py-2 text-sm text-gray-700 dark:text-gray-200 !text-left text-[13px]"

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, TextField, Button, Box, Typography, Paper } from "@mui/material";
+import { BACKEND_HOST } from "../../config";
 
 const Umrah = () => {
     const [umrahData, setUmrahData] = useState([]);
@@ -10,7 +11,7 @@ const Umrah = () => {
     useEffect(() => {
         const fetchUmrah = async () => {
             try {
-                const { data: { data } } = await axios.get(`${process.env.REACT_APP_BACKEND_HOST}umra`);
+                const { data: { data } } = await axios.get(`${BACKEND_HOST}umra`);
                 setUmrahData(data);
             } catch (err) {
                 setError("Failed to load Umrah data");
@@ -23,7 +24,7 @@ const Umrah = () => {
 
     const handleUpdate = async (id, updatedUmrah) => {
         try {
-            await axios.post(`${process.env.REACT_APP_BACKEND_HOST}umrah/${id}`, updatedUmrah);
+            await axios.post(`${BACKEND_HOST}umrah/${id}`, updatedUmrah);
             alert("Umrah data updated successfully!");
         } catch (err) {
             alert("Failed to update Umrah data.");

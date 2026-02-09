@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFormData, setErrors } from "../../store/store";
 import { useLocation, useNavigate } from "react-router-dom";
+import { BACKEND_HOST } from "../../config";
 
 const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
   const dispatch = useDispatch();
@@ -78,7 +79,7 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
           meta
         };
 
-        fetch(`${process.env.REACT_APP_BACKEND_HOST}hajj_book`, {
+        fetch(`${BACKEND_HOST}hajj_book`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -102,7 +103,7 @@ const Step4 = ({ handleNext, handleBack, setStepValidation }) => {
           encounter_type:identifier,
           meta
         };
-        fetch(`${process.env.REACT_APP_BACKEND_HOST}umra_book`, {
+        fetch(`${BACKEND_HOST}umra_book`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

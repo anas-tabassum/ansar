@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import validator from "validator";
+import { BACKEND_HOST } from "../config";
 
 const ContactForm = () => {
   const [email, setEmail] = useState("");
@@ -49,7 +50,7 @@ const ContactForm = () => {
 
     if (validateForm()) {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_HOST}contact_email`, {
+        const response = await fetch(`${BACKEND_HOST}contact_email`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, subject, message }),

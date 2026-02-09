@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useYearContext } from '../../store/YearContext';
+import { BACKEND_HOST } from '../../config';
 
 const AddLesson = ({onLessonAdded}) => {
         const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +39,7 @@ const AddLesson = ({onLessonAdded}) => {
 
                         const token = sessionStorage.getItem('token');
                                     await axios.post(
-                                                        `${process.env.REACT_APP_BACKEND_HOST}admin/lesson-add`,
+                                                        `${BACKEND_HOST}admin/lesson-add`,
                                         { title, url, description, year },
                                         { headers: { Authorization: `Bearer ${token}` } }
                                                     );

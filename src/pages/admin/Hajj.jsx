@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, TextField, Button, Box, Typography, Paper } from "@mui/material";
+import { BACKEND_HOST } from "../../config";
 
 const Hajj = () => {
     const [hajjData, setHajjData] = useState([]);
@@ -10,7 +11,7 @@ const Hajj = () => {
     useEffect(() => {
         const fetchHajj = async () => {
             try {
-                const { data: { data } } = await axios.get(`${process.env.REACT_APP_BACKEND_HOST}hajj`);
+                const { data: { data } } = await axios.get(`${BACKEND_HOST}hajj`);
                 setHajjData(data);
             } catch (err) {
                 setError("Failed to load Hajj data");
@@ -23,7 +24,7 @@ const Hajj = () => {
 
     const handleUpdate = async (id, updatedHajj) => {
         try {
-            await axios.post(`${process.env.REACT_APP_BACKEND_HOST}hajj/${id}`, updatedHajj);
+            await axios.post(`${BACKEND_HOST}hajj/${id}`, updatedHajj);
             alert("Hajj data updated successfully!");
         } catch (err) {
             alert("Failed to update Hajj data.");

@@ -4,6 +4,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import AddLesson from "./AddLesson";
 import { useYearContext } from "../../store/YearContext";
+import { BACKEND_HOST } from "../../config";
 
 const Lesson = () => {
         const [lessons, setLessons] = useState([]);
@@ -32,7 +33,7 @@ const Lesson = () => {
                   setLoading(true);
                   try {
                               const token = sessionStorage.getItem("token");
-                              const { data: { data } } = await axios.get(`${process.env.REACT_APP_BACKEND_HOST}lessons`, {
+                              const { data: { data } } = await axios.get(`${BACKEND_HOST}lessons`, {
                                             headers: { Authorization: `Bearer ${token}` }
                               });
                               setLessons(data);
@@ -70,7 +71,7 @@ const Lesson = () => {
         const handleUpdate = async (lesson) => {
                   try {
                               const token = sessionStorage.getItem("token");
-                              await axios.post(`${process.env.REACT_APP_BACKEND_HOST}admin/lesson-update`, {
+                              await axios.post(`${BACKEND_HOST}admin/lesson-update`, {
                                             id: lesson._id,
                                             title: lesson.title,
                                             url: lesson.url,
@@ -91,7 +92,7 @@ const Lesson = () => {
 
                   try {
                               const token = sessionStorage.getItem("token");
-                              await axios.get(`${process.env.REACT_APP_BACKEND_HOST}admin/lesson-delete/${id}`, {
+                              await axios.get(`${BACKEND_HOST}admin/lesson-delete/${id}`, {
                                             headers: { Authorization: `Bearer ${token}` }
                               });
                               refreshData();

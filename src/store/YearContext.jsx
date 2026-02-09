@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { BACKEND_HOST } from '../config';
 
 const YearContext = createContext();
 
@@ -11,7 +12,7 @@ export const YearProvider = ({ children }) => {
         const fetchYears = async () => {
             try {
                 const { data: { data } } = await axios.get(
-                    `${process.env.REACT_APP_BACKEND_HOST}lessons`
+                    `${BACKEND_HOST}lessons`
                 );
                 // Extract unique years from lesson data
                 const apiYears = [...new Set(

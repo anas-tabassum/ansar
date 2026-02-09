@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import VideoPlayer from '../components/VideoPlayer';
+import { BACKEND_HOST } from '../config';
 
 const Lecture = () => {
     const { year } = useParams();
@@ -15,8 +16,8 @@ const Lecture = () => {
             try {
                 setLoading(true);
                 const url = year
-                    ? `${process.env.REACT_APP_BACKEND_HOST}lessons/${year}`
-                    : `${process.env.REACT_APP_BACKEND_HOST}lessons`;
+                    ? `${BACKEND_HOST}lessons/${year}`
+                    : `${BACKEND_HOST}lessons`;
 
                 const { data: { data } } = await axios.get(url);
                 setLessons(data);

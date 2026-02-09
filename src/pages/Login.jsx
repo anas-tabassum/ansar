@@ -4,6 +4,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { BACKEND_HOST } from '../config';
 
 const AdminLogin = () => {
     const [email, setEmail] = useState('');
@@ -18,7 +19,7 @@ const AdminLogin = () => {
         setError('');
 
         try {
-            const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_HOST}admin-login`, { email, password });
+            const { data } = await axios.post(`${BACKEND_HOST}admin-login`, { email, password });
 
             if (data.success) {
                 sessionStorage.setItem('token', data.token);
